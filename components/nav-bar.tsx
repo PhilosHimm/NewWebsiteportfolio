@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Home, Briefcase, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop, Droplet } from "lucide-react"
+import { Home, Briefcase, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -101,7 +101,6 @@ export function NavBar() {
                   <Button variant="outline" size="icon" className="rounded-full ml-2">
                     {theme === "light" && <Sun className="h-5 w-5" />}
                     {theme === "dark" && <Moon className="h-5 w-5" />}
-                    {theme === "mint" && <Droplet className="h-5 w-5" />}
                     {theme === "system" && <Laptop className="h-5 w-5" />}
                   </Button>
                 </DropdownMenuTrigger>
@@ -113,10 +112,6 @@ export function NavBar() {
                   <DropdownMenuItem onClick={() => setTheme("dark")}>
                     <Moon className="mr-2 h-4 w-4" />
                     <span>Dark</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("mint")}>
-                    <Droplet className="mr-2 h-4 w-4" />
-                    <span>Mint</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setTheme("system")}>
                     <Laptop className="mr-2 h-4 w-4" />
@@ -164,7 +159,7 @@ export function NavBar() {
                     {/* Theme Options */}
                     <div className="mt-6 px-4">
                       <p className="text-sm font-medium text-gray-500 mb-2">Theme</p>
-                      <div className="grid grid-cols-4 gap-2">
+                      <div className="grid grid-cols-3 gap-2">
                         <Button
                           variant={theme === "light" ? "default" : "outline"}
                           className="flex flex-col items-center justify-center h-20"
@@ -180,14 +175,6 @@ export function NavBar() {
                         >
                           <Moon className="h-6 w-6 mb-1" />
                           <span>Dark</span>
-                        </Button>
-                        <Button
-                          variant={theme === "mint" ? "default" : "outline"}
-                          className="flex flex-col items-center justify-center h-20"
-                          onClick={() => setTheme("mint")}
-                        >
-                          <Droplet className="h-6 w-6 mb-1" />
-                          <span>Mint</span>
                         </Button>
                         <Button
                           variant={theme === "system" ? "default" : "outline"}

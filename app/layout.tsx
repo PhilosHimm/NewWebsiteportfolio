@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Material Design Portfolio",
-  description: "A portfolio website with Google Material Design language and custom Mint theme",
-    generator: 'v0.dev'
+  description: "A portfolio website with Google Material Design language",
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="mint" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>

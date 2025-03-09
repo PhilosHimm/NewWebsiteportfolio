@@ -54,7 +54,6 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         // Custom palette colors
-        mint: "#d5fff3",
         darkgray: "#131516",
         blueaccent: "#6883BA",
       },

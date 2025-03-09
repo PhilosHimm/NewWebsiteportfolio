@@ -44,9 +44,9 @@ export function SkillsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   viewport={{ once: true }}
-                  className="bg-white dark:bg-gray-800 mint:bg-mint/50 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"
+                  className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"
                 >
-                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 mint:bg-mint flex items-center justify-center text-blue-600 dark:text-blue-400 mint:text-blueaccent mb-3">
+                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-3">
                     {tech.icon}
                   </div>
                   <span className="font-medium text-gray-900 dark:text-white">{tech.name}</span>
@@ -68,9 +68,9 @@ export function SkillsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   viewport={{ once: true }}
-                  className="bg-white dark:bg-gray-800 mint:bg-mint/50 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center border-t-4 border-blue-500 dark:border-blue-600 mint:border-blueaccent"
+                  className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center border-t-4 border-blue-500 dark:border-blue-600"
                 >
-                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 mint:bg-mint flex items-center justify-center text-blue-600 dark:text-blue-400 mint:text-blueaccent mb-3">
+                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-3">
                     {tech.icon}
                   </div>
                   <span className="font-medium text-gray-900 dark:text-white">{tech.name}</span>

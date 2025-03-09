@@ -63,7 +63,7 @@ export function ContactSection() {
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 mint:bg-mint flex items-center justify-center text-blue-600 dark:text-blue-400 mint:text-blueaccent mr-4 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4 shrink-0">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
@@ -73,7 +73,7 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-start">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 mint:bg-mint flex items-center justify-center text-blue-600 dark:text-blue-400 mint:text-blueaccent mr-4 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4 shrink-0">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
@@ -83,7 +83,7 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-start">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 mint:bg-mint flex items-center justify-center text-blue-600 dark:text-blue-400 mint:text-blueaccent mr-4 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4 shrink-0">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
@@ -173,7 +173,7 @@ export function ContactSection() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700 mint:bg-blueaccent mint:hover:bg-blueaccent/80 text-white rounded-md shadow-md"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow-md"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (

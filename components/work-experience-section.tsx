@@ -99,7 +99,7 @@ export function WorkExperienceSection() {
                 <p className="text-gray-600 dark:text-gray-300 mb-6">{experience.description}</p>
 
                 <Link href={`/experience/${experience.id}`}>
-                  <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center mint:bg-mint mint:text-darkgray mint:hover:bg-mint/80">
+                  <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center">
                     View Details
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>

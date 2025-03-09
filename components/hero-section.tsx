@@ -36,7 +36,7 @@ export function HeroSection() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-mint dark:bg-blue-900 mint:bg-mint text-blueaccent dark:text-blue-400 mint:text-darkgray hover:bg-mint/80 dark:hover:bg-blue-800 mint:hover:bg-mint/80"
+                className="rounded-full bg-blue-900 text-blueaccent dark:text-blue-400 hover:bg-blue-800"
               >
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn Profile</span>
@@ -46,7 +46,7 @@ export function HeroSection() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full bg-mint dark:bg-blue-900 mint:bg-mint text-blueaccent dark:text-blue-400 mint:text-darkgray hover:bg-mint/80 dark:hover:bg-blue-800 mint:hover:bg-mint/80"
+                className="rounded-full bg-blue-900 text-blueaccent dark:text-blue-400 hover:bg-blue-800"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub Profile</span>
