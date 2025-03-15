@@ -5,13 +5,21 @@ import { motion } from "framer-motion"
 import { ArrowDown, Linkedin, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { useTheme } from "next-themes"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  const toggleDarkMode = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
 
   if (!mounted) return null
 
@@ -27,12 +35,12 @@ export function HeroSection() {
           <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blueaccent to-mint flex items-center justify-center text-darkgray text-3xl font-bold mb-4 mx-auto shadow-lg">
             P
           </div>
-          <h1 className="text-4xl font-medium text-gray-900 dark:text-white mb-2">Portfolio</h1>
-          <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Material Design inspired development</p>
+          <h1 className="text-4xl font-medium text-gray-900 dark:text-white mb-2">Philos Himm</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p>
 
           {/* Social Media Icons */}
           <div className="flex justify-center space-x-4 mb-8">
-            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://www.linkedin.com/in/philos-himm/" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="ghost"
                 size="icon"
@@ -42,7 +50,7 @@ export function HeroSection() {
                 <span className="sr-only">LinkedIn Profile</span>
               </Button>
             </Link>
-            <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/PhilosHimm" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="ghost"
                 size="icon"
@@ -52,6 +60,12 @@ export function HeroSection() {
                 <span className="sr-only">GitHub Profile</span>
               </Button>
             </Link>
+          </div>
+
+          {/* Dark Mode Toggle */}
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <Switch id="dark-mode" checked={theme === "dark"} onCheckedChange={toggleDarkMode} />
+            <Label htmlFor="dark-mode">Dark Mode</Label>
           </div>
         </motion.div>
 

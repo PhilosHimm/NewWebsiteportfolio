@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Home, Briefcase, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
+import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -20,7 +20,7 @@ export function NavBar() {
     const handleScroll = () => {
       setScrollY(window.scrollY)
 
-      const sections = ["home", "experience", "projects", "skills", "contact"]
+      const sections = ["home", "experience", "projects", "education", "skills", "contact"]
       const scrollPosition = window.scrollY + 300
 
       for (const section of sections) {
@@ -47,6 +47,7 @@ export function NavBar() {
     { id: "home", label: "Home", icon: <Home className="h-5 w-5" /> },
     { id: "experience", label: "Experience", icon: <Briefcase className="h-5 w-5" /> },
     { id: "projects", label: "Projects", icon: <Briefcase className="h-5 w-5" /> },
+    { id: "education", label: "Education", icon: <GraduationCap className="h-5 w-5" /> },
     { id: "skills", label: "Skills", icon: <Code className="h-5 w-5" /> },
     { id: "contact", label: "Contact", icon: <Mail className="h-5 w-5" /> },
   ]
