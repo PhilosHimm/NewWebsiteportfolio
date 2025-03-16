@@ -7,31 +7,54 @@ import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useRouter, usePathname } from "next/navigation"
+import Link from "next/link"
 
-export function NavBar() {
+interface NavBarProps {
+  isExperiencePage?: boolean;
+}
+
+export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [scrollY, setScrollY] = useState(0)
   const [activeSection, setActiveSection] = useState("home")
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
 
+    // Check for hash in URL on initial load
+    if (typeof window !== 'undefined' && window.location.hash && !isExperiencePage) {
+      const hash = window.location.hash.substring(1); // remove the # symbol
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(hash);
+        }
+      }, 100); // Small delay to ensure DOM is ready
+    }
+
     const handleScroll = () => {
       setScrollY(window.scrollY)
 
-      const sections = ["home", "experience", "projects", "education", "skills", "contact"]
-      const scrollPosition = window.scrollY + 300
+      // Only track active section on home page
+      if (!isExperiencePage) {
+        const sections = ["home", "experience", "projects", "education", "skills", "contact"]
+        const scrollPosition = window.scrollY + 300
 
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
+        for (const section of sections) {
+          const element = document.getElementById(section)
+          if (element) {
+            const offsetTop = element.offsetTop
+            const offsetHeight = element.offsetHeight
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveSection(section)
+              break
+            }
           }
         }
       }
@@ -39,9 +62,7 @@ export function NavBar() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  if (!mounted) return null
+  }, [isExperiencePage])
 
   const navItems = [
     { id: "home", label: "Home", icon: <Home className="h-5 w-5" /> },
@@ -52,9 +73,72 @@ export function NavBar() {
     { id: "contact", label: "Contact", icon: <Mail className="h-5 w-5" /> },
   ]
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-  }
+  // Use Link component instead of router.push for better hash handling
+  const renderNavItem = (item: { id: string, label: string, icon: React.ReactNode }) => {
+    if (isExperiencePage) {
+      return (
+        <Link 
+          href={`/#${item.id}`} 
+          key={item.id}
+          className={`px-4 py-2 rounded-full ${
+            activeSection === item.id
+              ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
+              : "text-gray-700 dark:text-gray-300"
+          }`}
+        >
+          {item.label}
+        </Link>
+      );
+    }
+    
+    return (
+      <Button
+        key={item.id}
+        variant="ghost"
+        className={`px-4 py-2 rounded-full ${
+          activeSection === item.id
+            ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
+            : "text-gray-700 dark:text-gray-300"
+        }`}
+        onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+      >
+        {item.label}
+      </Button>
+    );
+  };
+
+  // Same logic for mobile items
+  const renderMobileNavItem = (item: { id: string, label: string, icon: React.ReactNode }) => {
+    if (isExperiencePage) {
+      return (
+        <Link 
+          href={`/#${item.id}`} 
+          key={item.id}
+          className={`flex flex-col items-center justify-center py-2 flex-1 ${
+            activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"
+          }`}
+        >
+          {item.icon}
+          <span className="text-xs mt-1">{item.label}</span>
+          {activeSection === item.id && <div className="absolute top-0 w-1/5 h-0.5 bg-blue-600 dark:bg-blue-400" />}
+        </Link>
+      );
+    }
+    
+    return (
+      <button
+        key={item.id}
+        onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+        className={`flex flex-col items-center justify-center py-2 flex-1 ${
+          activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"
+        }`}
+      >
+        {item.icon}
+        <span className="text-xs mt-1">{item.label}</span>
+        {activeSection === item.id && <div className="absolute top-0 w-1/5 h-0.5 bg-blue-600 dark:bg-blue-400" />}
+      </button>
+    );
+  };
 
   return (
     <>
@@ -67,34 +151,23 @@ export function NavBar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <motion.div
-                className="flex items-center gap-2 font-medium text-lg text-gray-900 dark:text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-md flex items-center justify-center text-white text-lg font-bold">
-                  P
-                </div>
-                <span>Portfolio</span>
-              </motion.div>
+              <Link href="/">
+                <motion.div
+                  className="flex items-center gap-2 font-medium text-lg text-gray-900 dark:text-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-md flex items-center justify-center text-white text-lg font-bold">
+                    P
+                  </div>
+                  <span>Portfolio</span>
+                </motion.div>
+              </Link>
             </div>
 
             <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Button
-                  key={item.id}
-                  variant="ghost"
-                  className={`px-4 py-2 rounded-full ${
-                    activeSection === item.id
-                      ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-                      : "text-gray-700 dark:text-gray-300"
-                  }`}
-                  onClick={() => scrollToSection(item.id)}
-                >
-                  {item.label}
-                </Button>
-              ))}
+              {navItems.map((item) => renderNavItem(item))}
 
               {/* Theme Dropdown */}
               <DropdownMenu>
@@ -113,10 +186,6 @@ export function NavBar() {
                   <DropdownMenuItem onClick={() => setTheme("dark")}>
                     <Moon className="mr-2 h-4 w-4" />
                     <span>Dark</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("system")}>
-                    <Laptop className="mr-2 h-4 w-4" />
-                    <span>System</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -177,14 +246,6 @@ export function NavBar() {
                           <Moon className="h-6 w-6 mb-1" />
                           <span>Dark</span>
                         </Button>
-                        <Button
-                          variant={theme === "system" ? "default" : "outline"}
-                          className="flex flex-col items-center justify-center h-20"
-                          onClick={() => setTheme("system")}
-                        >
-                          <Laptop className="h-6 w-6 mb-1" />
-                          <span>System</span>
-                        </Button>
                       </div>
                     </div>
                   </div>
@@ -198,19 +259,7 @@ export function NavBar() {
       {/* Mobile Bottom Navigation */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
         <div className="flex justify-around">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`flex flex-col items-center justify-center py-2 flex-1 ${
-                activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"
-              }`}
-            >
-              {item.icon}
-              <span className="text-xs mt-1">{item.label}</span>
-              {activeSection === item.id && <div className="absolute top-0 w-1/5 h-0.5 bg-blue-600 dark:bg-blue-400" />}
-            </button>
-          ))}
+          {navItems.map((item) => renderMobileNavItem(item))}
         </div>
       </div>
     </>

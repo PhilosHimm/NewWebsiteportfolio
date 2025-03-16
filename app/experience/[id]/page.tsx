@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { NavBar } from "@/components/nav-bar"
 
 interface ExperiencePageProps {
   params: {
@@ -86,6 +87,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   if (!experience) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <NavBar isExperiencePage={true} />
         <div className="text-center">
           <h1 className="text-2xl font-medium text-gray-900 dark:text-white mb-4">Experience not found</h1>
           <Link href="/" className="text-blue-600 dark:text-blue-400 flex items-center justify-center">
@@ -99,6 +101,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
+      <NavBar isExperiencePage={true} />
       <div className="container mx-auto px-4 py-12">
         <Link href="/#experience" className="inline-flex items-center text-blue-600 dark:text-blue-400 mb-8">
           <ArrowLeft className="mr-2 h-4 w-4" />
