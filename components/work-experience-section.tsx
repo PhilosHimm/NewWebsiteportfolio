@@ -67,9 +67,9 @@ export function WorkExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full"
             >
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 relative mr-4 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700">
                     <Image
@@ -96,14 +96,16 @@ export function WorkExperienceSection() {
                   </div>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-6">{experience.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow">{experience.description}</p>
 
-                <Link href={`/experience/${experience.id}`}>
-                  <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center">
-                    View Details
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <div className="mt-auto">
+                  <Link href={`/experience/${experience.id}`}>
+                    <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center">
+                      View Details
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           ))}
