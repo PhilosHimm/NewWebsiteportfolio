@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { NavBar } from "@/components/nav-bar"
@@ -87,6 +87,16 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
 
   const experience = experiences[params.id as keyof typeof experiences]
 
+  // Get the next experience ID
+  const getNextExperienceId = () => {
+    const experienceKeys = Object.keys(experiences);
+    const currentIndex = experienceKeys.indexOf(params.id);
+    const nextIndex = (currentIndex + 1) % experienceKeys.length;
+    return experienceKeys[nextIndex];
+  };
+
+  const nextExperienceId = getNextExperienceId();
+
   if (!experience) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
@@ -106,10 +116,19 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
       <NavBar isExperiencePage={true} />
       <div className="container mx-auto px-4 py-12">
-        <Link href="/#experience" className="inline-flex items-center text-blue-600 dark:text-blue-400 mb-8">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Experience
-        </Link>
+        <div className="flex justify-between items-center mb-8">
+          <Link href="/#experience" className="inline-flex items-center text-blue-600 dark:text-blue-400">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Experience
+          </Link>
+          <Link 
+            href={`/experience/${nextExperienceId}`} 
+            className="inline-flex items-center text-blue-600 dark:text-blue-400"
+          >
+            Next Experience
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
           <div className="p-6 md:p-8 border-b border-gray-200 dark:border-gray-700">
