@@ -55,7 +55,7 @@ export function ProjectsSection() {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-medium text-center mb-8 text-gray-900 dark:text-white">Projects</h2>
+        <h2 className="text-3xl font-medium text-center mb-8 text-gray-900 dark:text-white">Projects [Work In Progress]</h2>
 
         <div className="flex justify-center mb-8">
           <div className="inline-flex p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
