@@ -86,7 +86,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Email</h4>
-                  <p className="text-gray-900 dark:text-white">contact@example.com</p>
+                  <p className="text-gray-900 dark:text-white">phimm@torontomu.ca</p>
                 </div>
               </div>
 
@@ -96,7 +96,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Phone</h4>
-                  <p className="text-gray-900 dark:text-white">(123) 456-7890</p>
+                  <p className="text-gray-900 dark:text-white">(416) 846-5819</p>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Location</h4>
-                  <p className="text-gray-900 dark:text-white">San Francisco, CA</p>
+                  <p className="text-gray-900 dark:text-white">Toronto, ON</p>
                 </div>
               </div>
             </div>
