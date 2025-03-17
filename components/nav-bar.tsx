@@ -166,8 +166,8 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <div className="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-md flex items-center justify-center text-white text-lg font-bold">
-                    P
+                  <div className="w-16 h-8 bg-blue-500 dark:bg-blue-600 rounded-md flex items-center justify-center text-white text-lg font-bold">
+                    Philos
                   </div>
                   <span>Portfolio</span>
                 </motion.div>
