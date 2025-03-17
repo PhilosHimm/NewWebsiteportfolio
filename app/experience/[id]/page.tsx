@@ -1,7 +1,12 @@
+"use client"
+
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { NavBar } from "@/components/nav-bar"
+import { motion } from "framer-motion" // Import motion from framer-motion
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 interface ExperiencePageProps {
   params: {
@@ -10,6 +15,9 @@ interface ExperiencePageProps {
 }
 
 export default function ExperiencePage({ params }: ExperiencePageProps) {
+  const router = useRouter();
+  const [isAnimating, setIsAnimating] = useState(false);
+  
   // This would typically come from a database or API
   const experiences = {
     "salvation-army": {
@@ -96,6 +104,15 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   };
 
   const nextExperienceId = getNextExperienceId();
+  
+  // Function to handle next experience navigation with animation
+  const handleNextExperience = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsAnimating(true);
+    setTimeout(() => {
+      router.push(`/experience/${nextExperienceId}`);
+    }, 300); // Match this with animation duration
+  };
 
   if (!experience) {
     return (
@@ -121,16 +138,25 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Experience
           </Link>
-          <Link 
-            href={`/experience/${nextExperienceId}`} 
-            className="inline-flex items-center text-blue-600 dark:text-blue-400"
+          <a 
+            href={`/experience/${nextExperienceId}`}
+            onClick={handleNextExperience} 
+            className="inline-flex items-center text-blue-600 dark:text-blue-400 cursor-pointer"
           >
             Next Experience
             <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+          </a>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <motion.div
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+          initial={{ opacity: 1, x: 0 }}
+          animate={{ 
+            opacity: isAnimating ? 0 : 1, 
+            x: isAnimating ? -100 : 0 
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
           <div className="p-6 md:p-8 border-b border-gray-200 dark:border-gray-700">
             <div className="flex flex-col md:flex-row md:items-center">
               <div className="w-24 h-24 relative rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 mb-4 md:mb-0 md:mr-6">
@@ -192,7 +218,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </main>
   )

@@ -5,6 +5,7 @@ import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import { useState } from "react"
 
 interface WorkExperience {
   id: string
@@ -17,6 +18,9 @@ interface WorkExperience {
 }
 
 export function WorkExperienceSection() {
+  const [clickedCard, setClickedCard] = useState<string | null>(null)
+  const [ripplePosition, setRipplePosition] = useState({ x: 0, y: 0 })
+  
   const experiences: WorkExperience[] = [
     {
       id: "salvation-army",
@@ -49,8 +53,70 @@ export function WorkExperienceSection() {
     },
   ]
 
+  const handleButtonClick = (id: string, e: React.MouseEvent) => {
+    e.preventDefault()
+    
+    // Calculate absolute position of click in the document
+    const x = e.clientX
+    const y = e.clientY
+    
+    setRipplePosition({ x, y })
+    setClickedCard(id)
+    
+    // Decreased timeout for faster navigation while still showing animation
+    setTimeout(() => {
+      window.location.href = `/experience/${id}`
+    }, 1200)
+  }
+
   return (
-    <section id="experience" className="py-16">
+    <section id="experience" className="py-16 relative overflow-hidden">
+      {/* First ripple - solid fill expanding circle - slower initial animation */}
+      {clickedCard && (
+        <motion.div
+          initial={{ scale: 0, opacity: 1 }}
+          animate={{ scale: 200, opacity: 1 }}
+          transition={{ 
+            duration: 2, 
+            ease: [0.22, 0.03, 0.24, 1.0] // Slower start, faster finish
+          }}
+          className="fixed bg-blueaccent rounded-full z-50 pointer-events-none"
+          style={{
+            top: ripplePosition.y,
+            left: ripplePosition.x,
+            width: "20px",
+            height: "20px",
+            marginTop: "-10px",
+            marginLeft: "-10px",
+            transformOrigin: "center center",
+          }}
+        />
+      )}
+      
+      {/* Second ripple - ring effect - adjusted timing */}
+      {clickedCard && (
+        <motion.div
+          initial={{ scale: 0, opacity: 1, borderWidth: "10px" }}
+          animate={{ scale: 200, opacity: 0, borderWidth: "1px" }}
+          transition={{ 
+            duration: 1.5, 
+            ease: [0.1, 0.2, 0.3, 1.0], // More dramatic slow start
+            opacity: { duration: 1.0 }
+          }}
+          className="fixed border-blueaccent rounded-full z-50 pointer-events-none"
+          style={{
+            top: ripplePosition.y,
+            left: ripplePosition.x,
+            width: "40px",
+            height: "40px",
+            marginTop: "-20px",
+            marginLeft: "-20px",
+            transformOrigin: "center center",
+            borderStyle: "solid",
+          }}
+        />
+      )}
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -67,9 +133,9 @@ export function WorkExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full relative"
             >
-              <div className="p-6">
+              <div className="p-6 flex-grow flex flex-col">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 relative mr-4 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700">
                     <Image
@@ -97,13 +163,16 @@ export function WorkExperienceSection() {
                 </div>
 
                 <p className="text-gray-600 dark:text-gray-300 mb-6">{experience.description}</p>
-
-                <Link href={`/experience/${experience.id}`}>
-                  <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center">
+                
+                <div className="mt-auto">
+                  <Button 
+                    onClick={(e) => handleButtonClick(experience.id, e)} 
+                    className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center relative"
+                  >
                     View Details
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </Link>
+                </div>
               </div>
             </motion.div>
           ))}
