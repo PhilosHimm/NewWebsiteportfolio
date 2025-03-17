@@ -32,9 +32,11 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
           className="mb-6"
         >
-          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blueaccent to-mint flex items-center justify-center text-darkgray text-3xl font-bold mb-4 mx-auto shadow-lg">
-            P
-          </div>
+          <img
+            src="/ProfilePic.jpg"
+            alt="Profile Picture"
+            className="w-24 h-24 rounded-full mb-4 mx-auto shadow-lg object-cover object-[0,30%]"
+          />
           <h1 className="text-4xl font-medium text-gray-900 dark:text-white mb-2">Philos Himm</h1>
           <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p>
 
