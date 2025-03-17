@@ -10,11 +10,11 @@ export function ProjectsSection() {
   const projects = [
     {
       id: 1,
-      title: "Material Design Weather App",
-      description: "A weather application featuring Material Design components and animations.",
+      title: "Personal Portfolio Website",
+      description: "A responsive portfolio website with modern design principles, focusing on accessibility and user experience.",
       image: "/placeholder.svg?height=400&width=600",
-      category: "Mobile",
-      tags: ["Kotlin", "Material Components", "Jetpack Compose"],
+      category: "Web",
+      tags: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
     },
     {
       id: 2,
@@ -26,23 +26,23 @@ export function ProjectsSection() {
     },
     {
       id: 3,
-      title: "E-commerce Platform",
-      description: "A full-stack e-commerce solution with Google Material UI components.",
+      title: "Excel Automation Tools",
+      description: "A collection of Excel automation tools using Power Automate for business process optimization.",
       image: "/placeholder.svg?height=400&width=600",
-      category: "Web",
-      tags: ["React", "Node.js", "MongoDB"],
+      category: "Business",
+      tags: ["Excel", "Power Automate", "VBA"],
     },
     {
       id: 4,
-      title: "Portfolio Website",
-      description: "A responsive portfolio website with Material Design principles.",
+      title: "Data Visualization Dashboard",
+      description: "Interactive data visualization dashboard for business insights using Power BI.",
       image: "/placeholder.svg?height=400&width=600",
-      category: "Web",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      category: "Business",
+      tags: ["Power BI", "SQL", "Data Analysis"],
     },
   ]
 
-  const categories = ["All", "Mobile", "Web"]
+  const categories = ["All", "Web", "Mobile", "Business"]
 
   const filteredProjects =
     selectedCategory === "All" ? projects : projects.filter((project) => project.category === selectedCategory)

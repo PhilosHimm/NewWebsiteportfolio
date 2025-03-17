@@ -12,73 +12,76 @@ interface ExperiencePageProps {
 export default function ExperiencePage({ params }: ExperiencePageProps) {
   // This would typically come from a database or API
   const experiences = {
-    google: {
-      company: "Google",
-      role: "Senior Frontend Developer",
-      period: "2020 - Present",
-      location: "Mountain View, CA",
+    "salvation-army": {
+      company: "The Salvation Army: Territorial Headquarters",
+      role: "Office Assistant",
+      period: "May 2024 - July 2024",
+      location: "Canada & Bermuda",
       logo: "/placeholder.svg?height=120&width=120",
       description:
-        "Led development of Material Design components and implemented key features for Google Cloud Platform.",
+        "Worked as an Office Assistant at The Salvation Army's Territorial Headquarters, focusing on financial data processing and reporting.",
       responsibilities: [
-        "Led a team of 5 frontend developers to implement Material Design components across Google Cloud Platform",
-        "Developed and maintained a component library used by 20+ internal teams",
-        "Improved application performance by 40% through code optimization and lazy loading strategies",
-        "Collaborated with UX designers to ensure consistent implementation of design specifications",
-        "Mentored junior developers and conducted code reviews to maintain code quality",
+        "Processed 100,000+ general ledger purchases and sales invoices by implementing advanced Excel functions",
+        "Improved data accuracy and expedited financial reporting through efficient invoice processing",
+        "Created Excel and Power BI reports for 150+ ministry units, delivering actionable procurement insights",
+        "Enhanced strategic planning and cost optimization through data analysis",
+        "Collaborated with supplies and purchasing teams to coordinate mission support activities",
+        "Maintained an efficient records system by filing and archiving 200+ invoices, reducing retrieval times"
       ],
       achievements: [
-        "Received Google Peer Bonus for exceptional contributions to the Material Design system",
-        "Reduced bundle size by 30% through effective code splitting and tree shaking",
-        "Presented at internal Google tech talks on modern frontend architecture",
-        "Contributed to open source projects related to Material Design implementation",
+        "Implemented advanced Excel functions that improved data processing efficiency by 30%",
+        "Developed reporting systems that provided actionable insights for strategic planning",
+        "Ensured proper documentation and reduced document retrieval time by 40%",
+        "Contributed to seamless project execution and timely completion of mission-critical tasks"
       ],
-      technologies: ["React", "TypeScript", "Material UI", "Storybook", "Jest", "Webpack"],
+      technologies: ["Excel", "Power BI", "Microsoft Office Suite", "Records Management", "Data Analysis"],
     },
-    microsoft: {
-      company: "Microsoft",
-      role: "UI/UX Designer",
-      period: "2018 - 2020",
-      location: "Redmond, WA",
+    "tmu-recreation": {
+      company: "TMU: Department of Athletics and Recreation",
+      role: "Intramural Assistant",
+      period: "September 2023 - Present",
+      location: "Toronto, CA",
       logo: "/placeholder.svg?height=120&width=120",
       description:
-        "Designed user interfaces for Microsoft 365 applications and contributed to the Fluent Design System.",
+        "Working as an Intramural Assistant at Toronto Metropolitan University's Department of Athletics and Recreation, organizing sports activities and maintaining professional standards.",
       responsibilities: [
-        "Created user interface designs for Microsoft 365 applications using Figma and Adobe XD",
-        "Collaborated with product managers to define user requirements and create wireframes",
-        "Conducted user research and usability testing to validate design decisions",
-        "Contributed to the evolution of Microsoft's Fluent Design System",
-        "Worked closely with developers to ensure accurate implementation of designs",
+        "Collaborated with a 9-person officiating team to organize weekly volleyball intramurals",
+        "Ensured consistent rule enforcement and smooth game flow for more than 200 participants",
+        "Interacted with 100+ participants and stakeholders to maintain professional standards",
+        "Built strong interpersonal relationships with both internal and external clients",
+        "Coordinated scheduling and logistics for weekly intramural events",
+        "Resolved conflicts and addressed participant concerns during sports activities"
       ],
       achievements: [
-        "Redesigned key workflows in Microsoft Teams that improved user efficiency by 25%",
-        "Created a design system component library that reduced design inconsistencies by 60%",
-        "Won internal design hackathon for innovative accessibility features",
-        "Mentored junior designers and interns on UX best practices",
+        "Successfully managed weekly volleyball intramurals for 200+ participants",
+        "Developed effective communication skills through regular interaction with diverse stakeholders",
+        "Maintained high standards of professionalism and service excellence",
+        "Contributed to positive student experiences in campus recreational activities"
       ],
-      technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Principle", "HTML/CSS"],
+      technologies: ["Event Management", "Customer Service", "Team Coordination", "Conflict Resolution", "Sports Rules Enforcement"],
     },
-    amazon: {
-      company: "Amazon",
-      role: "Full Stack Developer",
-      period: "2016 - 2018",
-      location: "Seattle, WA",
+    "google-developers": {
+      company: "Google Developers Group on Campus: TMU",
+      role: "Corporate Relations Director",
+      period: "September 2024 - Present",
+      location: "Toronto, CA",
       logo: "/placeholder.svg?height=120&width=120",
-      description: "Developed and maintained e-commerce features for Amazon's retail platform using React and Node.js.",
+      description: "Serving as Corporate Relations Director for the Google Developers Group at TMU, focusing on partnership development and outreach.",
       responsibilities: [
-        "Developed and maintained frontend and backend features for Amazon's retail platform",
-        "Implemented responsive UI components using React and Redux",
-        "Built RESTful APIs using Node.js and Express",
-        "Optimized database queries and implemented caching strategies",
-        "Participated in on-call rotations to support production systems",
+        "Developed and implemented an automated email outreach system integrated with an Excel database",
+        "Used Power Automate to streamline communication processes and track outreach effectiveness",
+        "Consulted with cross-functional teams to prioritize incoming requests and manage stakeholder communications",
+        "Reinforced best practices for timely project execution and relationship management",
+        "Spearheaded over 500+ outreach initiatives through multiple channels",
+        "Cultivated partnerships with prospective sponsors by aligning their objectives with GDG's goals"
       ],
       achievements: [
-        "Implemented a feature that increased conversion rates by 15% for specific product categories",
-        "Reduced API response times by 50% through query optimization and caching",
-        "Received two 'Just Do It' awards for quickly addressing critical customer-facing issues",
-        "Contributed to internal tools that improved developer productivity",
+        "Increased sponsorship emails by 150% through automated email outreach system",
+        "Successfully initiated and maintained relationships with corporate partners",
+        "Improved team efficiency by implementing standardized communication processes",
+        "Created sustainable outreach strategies that enhanced the organization's visibility"
       ],
-      technologies: ["React", "Redux", "Node.js", "Express", "MongoDB", "AWS", "Docker"],
+      technologies: ["Power Automate", "Excel", "Email Marketing", "LinkedIn", "Relationship Management", "Project Coordination"],
     },
   }
 
