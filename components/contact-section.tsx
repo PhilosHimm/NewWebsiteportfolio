@@ -18,6 +18,7 @@ export function ContactSection() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
@@ -26,21 +27,38 @@ export function ContactSection() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitError(null)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState)
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+      
       setIsSubmitted(true)
       setFormState({ name: "", email: "", message: "" })
-
+      
       // Reset success message after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false)
       }, 5000)
-    }, 1500)
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError((error as Error).message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -120,6 +138,11 @@ export function ContactSection() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit}>
+                  {submitError && (
+                    <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md text-sm">
+                      {submitError}
+                    </div>
+                  )}
                   <div className="space-y-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
