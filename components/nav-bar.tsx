@@ -140,6 +140,14 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     );
   };
 
+  function scrollToSection(id: string): void {
+    if (isExperiencePage) {
+      router.push(`/#${id}`);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <>
       {/* Desktop Navigation */}
