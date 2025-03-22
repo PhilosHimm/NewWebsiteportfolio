@@ -23,7 +23,7 @@ export function WorkExperienceSection() {
       company: "The Salvation Army: Territorial Headquarters",
       role: "Office Assistant",
       period: "May 2024 - July 2024",
-      location: "Canada & Bermuda",
+      location: "Toronto, ON, Canada",
       description:
         "Processed 100,000+ general ledger invoices and created Excel/Power BI reports for 150+ ministry units, delivering actionable procurement insights.",
       logo: "/placeholder.svg?height=80&width=80",
@@ -33,7 +33,7 @@ export function WorkExperienceSection() {
       company: "TMU: Department of Athletics and Recreation",
       role: "Intramural Assistant",
       period: "September 2023 - Present",
-      location: "Toronto, CA",
+      location: "Toronto, ON, Canada",
       description:
         "Collaborated with a 9-person officiating team to organize weekly volleyball intramurals for 200+ participants while maintaining professional standards.",
       logo: "/placeholder.svg?height=80&width=80",
@@ -43,7 +43,7 @@ export function WorkExperienceSection() {
       company: "Google Developers Group on Campus: TMU",
       role: "Corporate Relations Director",
       period: "September 2024 - Present",
-      location: "Toronto, CA",
+      location: "Toronto, ON, Canada",
       description: "Developed automated email outreach systems and spearheaded 500+ outreach initiatives, increasing sponsorship emails by 150%.",
       logo: "/placeholder.svg?height=80&width=80",
     },
@@ -105,7 +105,7 @@ export function WorkExperienceSection() {
                   <Link href={`/experience/${experience.id}`}>
                     <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center">
                       View Details
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-  2 h-4 w-4" />
                     </Button>
                   </Link>
                 </div>

@@ -2,6 +2,16 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { NavBar } from "@/components/nav-bar"
+// new import for pagination
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
 interface ExperiencePageProps {
   params: {
@@ -86,6 +96,9 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   }
 
   const experience = experiences[params.id as keyof typeof experiences]
+  
+  // NEW: Compute experience keys to pass into the PaginationDemo
+  const experienceKeys = Object.keys(experiences)
 
   // Get the next experience ID
   const getNextExperienceId = () => {
@@ -193,8 +206,40 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
             </div>
           </div>
         </div>
+
+        {/* Replace static PaginationDemo with dynamic pagination */}
+        <div className="mt-12">
+          <PaginationDemo experiences={experienceKeys} currentId={params.id} />
+        </div>
       </div>
     </main>
+  )
+}
+
+// Replace existing PaginationDemo with a dynamic one
+export function PaginationDemo({ experiences, currentId }: { experiences: string[]; currentId: string }) {
+  const currentIndex = experiences.indexOf(currentId);
+  const prevId = experiences[(currentIndex - 1 + experiences.length) % experiences.length];
+  const nextId = experiences[(currentIndex + 1) % experiences.length];
+
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href={`/experience/${prevId}`} />
+        </PaginationItem>
+        {experiences.map((expId, index) => (
+          <PaginationItem key={expId}>
+            <PaginationLink href={`/experience/${expId}`} isActive={expId === currentId}>
+              {index + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+        <PaginationItem>
+          <PaginationNext href={`/experience/${nextId}`} />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   )
 }
 
