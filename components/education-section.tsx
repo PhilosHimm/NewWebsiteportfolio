@@ -14,7 +14,7 @@ export function EducationSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="inline-block mr-2"><FaGraduationCap /></span>
+          <span className="inline-block mr-2"></span>
           Education
           <div className="h-1 w-20 bg-blue-500 mx-auto mt-2 rounded-full"></div>
         </motion.h2>

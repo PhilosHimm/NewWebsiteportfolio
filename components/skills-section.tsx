@@ -50,7 +50,10 @@ export function SkillsSection() {
   return (
     <section id="skills" className="py-16 bg-gray-50 dark:bg-gray-900/50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white">Skills</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white">
+          Skills
+          <div className="h-1 w-20 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (

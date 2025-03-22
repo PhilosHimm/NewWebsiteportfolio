@@ -69,7 +69,10 @@ export function ContactSection() {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">Contact Me</h2>
+        <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">
+          Contact Me
+          <div className="h-1 w-20 bg-blue-600 mx-auto mt-2 rounded-full"></div>
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>

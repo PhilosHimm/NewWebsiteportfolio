@@ -57,7 +57,10 @@ export function WorkExperienceSection() {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">Work Experience</h2>
+        <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">
+          Work Experience
+          <div className="h-1 w-20 bg-blue-600 mx-auto mt-2 rounded-full"></div>
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {experiences.map((experience, index) => (
