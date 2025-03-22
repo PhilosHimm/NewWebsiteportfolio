@@ -79,16 +79,18 @@ export function HeroSection() {
               </Link>
             </div>
 
-            {/* Dark Mode Toggle */}
-            <div className="flex items-center space-x-2 mb-4">
-              <Switch id="dark-mode" checked={theme === "dark"} onCheckedChange={toggleDarkMode} />
-              <Label htmlFor="dark-mode">Dark Mode</Label>
-            </div>
+            
             
             <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-md">
-              Welcome to my portfolio showcasing my projects, skills, and experience with a Google Material Design
+              👋 Welcome to my portfolio showcasing my projects, skills, and experience with a Google Material Design
               inspired interface.
             </p>
+
+            {/* Dark Mode Toggle */}
+            <div className="flex items-center space-x-2 mb-5">
+              <Switch id="dark-mode" checked={theme === "dark"} onCheckedChange={toggleDarkMode} />
+              <Label htmlFor="dark-mode">Toggle Theme</Label>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
@@ -97,7 +99,7 @@ export function HeroSection() {
                   document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })
                 }}
               >
-                View Experience
+                Explore My Work
               </Button>
               <Button
                 variant="outline"
@@ -106,7 +108,7 @@ export function HeroSection() {
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }}
               >
-                Contact Me
+                Let's Connect
               </Button>
             </div>
           </motion.div>
