@@ -128,7 +128,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
       <NavBar isExperiencePage={true} />
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-6 mt-8">
         <div className="flex justify-between items-center mb-8">
           <Link href="/#experience" className="inline-flex items-center text-blue-600 dark:text-blue-400">
             <ArrowLeft className="mr-2 h-4 w-4" />

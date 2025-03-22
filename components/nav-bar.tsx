@@ -18,15 +18,19 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [scrollY, setScrollY] = useState(0)
-  const [activeSection, setActiveSection] = useState("home")
+  const [activeSection, setActiveSection] = useState(isExperiencePage ? "experience" : "home")
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
 
-    // Check for hash in URL on initial load
-    if (typeof window !== 'undefined' && window.location.hash && !isExperiencePage) {
+    // If on experience page, always highlight the experience section
+    if (isExperiencePage) {
+      setActiveSection("experience")
+    }
+    // For the home page, check for hash in URL on initial load
+    else if (typeof window !== 'undefined' && window.location.hash) {
       const hash = window.location.hash.substring(1); // remove the # symbol
       setTimeout(() => {
         const element = document.getElementById(hash);
@@ -80,10 +84,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         <Link 
           href={`/#${item.id}`} 
           key={item.id}
-          className={`px-4 py-2 rounded-full ${
+          className={`px-4 py-2 rounded-full inline-flex items-center justify-center h-10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
             activeSection === item.id
               ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-              : "text-gray-700 dark:text-gray-300"
+              : "text-gray-700 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground"
           }`}
         >
           {item.label}
@@ -114,7 +118,7 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         <Link 
           href={`/#${item.id}`} 
           key={item.id}
-          className={`flex flex-col items-center justify-center py-2 flex-1 ${
+          className={`flex flex-col items-center justify-center py-2 flex-1 relative ${
             activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"
           }`}
         >
@@ -142,7 +146,8 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
 
   function scrollToSection(id: string): void {
     if (isExperiencePage) {
-      router.push(`/#${id}`);
+      // Use router.push with replace for better UX without page reload
+      router.push(`/#${id}`, { scroll: false });
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
