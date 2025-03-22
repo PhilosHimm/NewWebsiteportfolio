@@ -208,7 +208,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
         </div>
 
         {/* Replace static PaginationDemo with dynamic pagination */}
-        <div className="mt-12">
+        <div className="mt-12 pb-12">
           <PaginationDemo experiences={experienceKeys} currentId={params.id} />
         </div>
       </div>
