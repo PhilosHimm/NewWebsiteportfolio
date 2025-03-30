@@ -27,7 +27,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
       role: "Office Assistant",
       period: "May 2024 - July 2024",
       location: "Canada & Bermuda",
-      logo: "/Thesalvationarmylogo.jpg",
+      logo: "/Thesalvationarmylogo.png",
       description:
         "Worked as an Office Assistant at The Salvation Army's Territorial Headquarters, focusing on financial data processing and reporting.",
       responsibilities: [

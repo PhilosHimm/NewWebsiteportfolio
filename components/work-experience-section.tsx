@@ -26,7 +26,7 @@ export function WorkExperienceSection() {
       location: "Toronto, ON, Canada",
       description:
         "Processed 100,000+ general ledger invoices and created Excel/Power BI reports for 150+ ministry units, delivering actionable procurement insights.",
-      logo: "/Thesalvationarmylogo.jpg",
+      logo: "/Thesalvationarmylogo.png",
     },
     {
       id: "tmu-recreation",
