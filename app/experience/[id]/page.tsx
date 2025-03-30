@@ -27,31 +27,31 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
       role: "Office Assistant",
       period: "May 2024 - July 2024",
       location: "Canada & Bermuda",
-      logo: "/placeholder.svg?height=120&width=120",
+      logo: "/Thesalvationarmylogo.jpg",
       description:
         "Worked as an Office Assistant at The Salvation Army's Territorial Headquarters, focusing on financial data processing and reporting.",
       responsibilities: [
-        "Processed 100,000+ general ledger purchases and sales invoices by implementing advanced Excel functions",
-        "Improved data accuracy and expedited financial reporting through efficient invoice processing",
-        "Created Excel and Power BI reports for 150+ ministry units, delivering actionable procurement insights",
-        "Enhanced strategic planning and cost optimization through data analysis",
-        "Collaborated with supplies and purchasing teams to coordinate mission support activities",
-        "Maintained an efficient records system by filing and archiving 200+ invoices, reducing retrieval times"
+        "Analyzed over 100,000 general ledger transactions using advanced Excel functions, improving accuracy and data interpretation",
+        "Streamlined financial reporting processes by applying automation and structured logic in Excel",
+        "Developed Excel and Power BI dashboards to deliver actionable procurement insights across 150+ ministry units",
+        "Supported strategic planning by identifying spending trends and preparing summarized insights for decision-making",
+        "Coordinated cross-functional tasks with the Supplies & Purchasing team, contributing to smooth project execution",
+        "Improved invoice filing system for 200+ records, reducing document retrieval time by 40%"
       ],
       achievements: [
-        "Implemented advanced Excel functions that improved data processing efficiency by 30%",
-        "Developed reporting systems that provided actionable insights for strategic planning",
-        "Ensured proper documentation and reduced document retrieval time by 40%",
-        "Contributed to seamless project execution and timely completion of mission-critical tasks"
+        "Applied advanced Excel formulas (INDEX-MATCH, IFs, pivot tables) to increase processing speed and improve data reliability by 30%",
+        "Created automated reporting templates that enhanced presentation quality and aided procurement strategy",
+        "Successfully managed 15+ projects by prioritizing tasks, integrating feedback, and ensuring timely delivery of insights",
+        "“Philos has shown notable development in project management skills and demonstrated a strong willingness to grow and take on challenges.” – Estee Lau, Supervisor, Summer 2024"
       ],
-      technologies: ["Excel", "Power BI", "Microsoft Office Suite", "Records Management", "Data Analysis"],
+      tools: ["Excel", "Power BI", "Microsoft Office Suite", "Records Management", "Data Analysis"],
     },
     "tmu-recreation": {
       company: "TMU: Department of Athletics and Recreation",
       role: "Intramural Assistant",
       period: "September 2023 - Present",
       location: "Toronto, CA",
-      logo: "/placeholder.svg?height=120&width=120",
+      logo: "/TMUathleticslogo.jpg",
       description:
         "Working as an Intramural Assistant at Toronto Metropolitan University's Department of Athletics and Recreation, organizing sports activities and maintaining professional standards.",
       responsibilities: [
@@ -59,7 +59,6 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
         "Ensured consistent rule enforcement and smooth game flow for more than 200 participants",
         "Interacted with 100+ participants and stakeholders to maintain professional standards",
         "Built strong interpersonal relationships with both internal and external clients",
-        "Coordinated scheduling and logistics for weekly intramural events",
         "Resolved conflicts and addressed participant concerns during sports activities"
       ],
       achievements: [
@@ -68,14 +67,14 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
         "Maintained high standards of professionalism and service excellence",
         "Contributed to positive student experiences in campus recreational activities"
       ],
-      technologies: ["Event Management", "Customer Service", "Team Coordination", "Conflict Resolution", "Sports Rules Enforcement"],
+      tools: ["Event Management", "Customer Service", "Team Coordination", "Conflict Resolution", "Sports Rules Enforcement"],
     },
     "google-developers": {
       company: "Google Developers Group on Campus: TMU",
       role: "Corporate Relations Director",
       period: "September 2024 - Present",
       location: "Toronto, CA",
-      logo: "/placeholder.svg?height=120&width=120",
+      logo: "/GDGlogo.png",
       description: "Serving as Corporate Relations Director for the Google Developers Group at TMU, focusing on partnership development and outreach.",
       responsibilities: [
         "Developed and implemented an automated email outreach system integrated with an Excel database",
@@ -91,7 +90,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
         "Improved team efficiency by implementing standardized communication processes",
         "Created sustainable outreach strategies that enhanced the organization's visibility"
       ],
-      technologies: ["Power Automate", "Excel", "Email Marketing", "LinkedIn", "Relationship Management", "Project Coordination"],
+      tools: ["Power Automate", "Excel", "Email Marketing", "LinkedIn", "Relationship Management", "Project Coordination"],
     },
   }
 
@@ -192,9 +191,9 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
             </div>
 
             <div>
-              <h2 className="text-xl font-medium text-gray-900 dark:text-white mb-4">Technologies Used</h2>
+              <h2 className="text-xl font-medium text-gray-900 dark:text-white mb-4">Tools/Skills used</h2>
               <div className="flex flex-wrap gap-2">
-                {experience.technologies.map((tech, index) => (
+                {experience.tools.map((tech, index) => (
                   <span
                     key={index}
                     className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"

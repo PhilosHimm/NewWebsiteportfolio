@@ -82,8 +82,8 @@ export function HeroSection() {
             
             
             <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-md">
-              👋 Welcome to my portfolio showcasing my projects, skills, and experience with a Google Material Design
-              inspired interface.
+            👋 Hi there! I'm excited to share my portfolio—featuring selected projects, skills, and experiences, 
+            all built with a clean, Google Material Design–inspired interface.
             </p>
 
             {/* Dark Mode Toggle */}
