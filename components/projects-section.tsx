@@ -13,26 +13,26 @@ export function ProjectsSection() {
     {
       id: 1,
       title: "Personal Portfolio Website",
-      description: "A responsive portfolio website with modern design principles, focusing on accessibility and user experience.",
-      image: "/placeholder.svg?height=400&width=600",
+      description: "A professional portfolio website showcasing skills, work experience, and certifications with a minimalist black-and-white theme using HTML & Bootstrap for responsive design.",
+      image: "/htmlportfolio.png",
       category: "Web",
       tags: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
       detailedDescription: `
-        This portfolio website was created to showcase my professional work and skills in a modern, 
-        responsive format. The site features a clean, accessible design with intuitive navigation.
+        This portfolio website was developed as a professional platform to highlight my technical skills, work experience, and certifications to potential employers, hiring managers, and collaborators. It features:
         
-        Key features include:
-        • Responsive design that works on all devices
-        • Dark/light mode toggle
-        • Animated transitions using Framer Motion
-        • Accessible UI components
-        • SEO optimization
+        • A minimalist black-and-white design with custom CSS to override Bootstrap defaults for a consistent, professional look.
+        • A responsive layout built with Bootstrap that adapts seamlessly across devices.
+        • A header showcasing the website title, contact information, and social media links (LinkedIn, Instagram, GitHub).
+        • A smart navigation bar that hides on scroll down and reappears on scroll up, ensuring easy access to key sections such as Work Experience, Skills, Certifications, and Contact.
+        • A hero section with a professional headshot, a brief bio, and call-to-action buttons ("Why Hire Me?" and "Contact Me") to engage visitors.
+        • Card-based layouts for presenting work experience and structured sections for skills and certifications.
+        • Smooth fade-in animations on scroll and JavaScript-driven interactions to enhance user experience.
         
-        The project was built using Next.js and Tailwind CSS, with a focus on performance and user experience.
+        Built as part of the ITM780 course at Toronto Metropolitan University, this website not only demonstrates my professional qualifications but also showcases my web development expertise.
       `,
-      challenges: "Creating a design that effectively communicates my personal brand while maintaining excellent performance metrics was a significant challenge.",
-      solutions: "I implemented component-based architecture and used modern CSS techniques to ensure the site loads quickly while maintaining visual appeal.",
-      link: "https://github.com/username/portfolio",
+      challenges: "Achieving a balance between a clean, minimalist design and robust functionality, particularly in managing consistent spacing with Bootstrap, integrating smooth animations, and ensuring optimal performance across devices.",
+      solutions: "Customized Bootstrap with tailored CSS and JavaScript enhancements, implemented responsive design techniques, and optimized the layout and animations to deliver a seamless and professional user experience.",
+      link: "https://philoshimm.github.io/Final%20Project/index.html",
     },
     {
       id: 2,
@@ -48,25 +48,25 @@ export function ProjectsSection() {
     },
     {
       id: 3,
-      title: "Excel Automation Tools",
-      description: "A collection of Excel automation tools using Power Automate for business process optimization.",
-      image: "/placeholder.svg?height=400&width=600",
+      title: "Open Banking Framework",
+      description: "A strategic initiative to modernize financial services through open banking models, emphasizing transparency, security, and customer empowerment.",
+      image: "/openbanking.png",
       category: "Business",
-      tags: ["Excel", "Power Automate", "VBA"],
+      tags: ["Open Banking", "FinTech", "API", "Cybersecurity", "Data Transparency"],
       detailedDescription: `
-        This collection of tools automates repetitive tasks in Excel to improve business efficiency.
+        This initiative proposes a comprehensive open banking framework designed to transform traditional banking systems. Leveraging third-party APIs and modern IT solutions, the framework focuses on:
         
-        The automation suite includes:
-        • Data validation and cleaning tools
-        • Automated reporting templates
-        • Inventory management system
-        • Customer data processing workflows
+        • Establishing robust governance with clear policies that integrate environmental and social responsibilities.
+        • Building a secure and scalable infrastructure through cloud computing, hybrid models, and BYOD approaches.
+        • Enhancing customer trust via transparent data practices, informed consent, and stringent cybersecurity measures.
         
-        These tools have significantly reduced manual processing time and error rates.
+        Drawing on insights from international examples and successful case studies, this project outlines how open banking can replace outdated banking practices with agile, customer-centric, and secure financial services.
+        
+        This presentation was a collaborative group effort delivered for a case competition hosted by ITMSA at FBTC (Future of Business Technology Conference).
       `,
-      challenges: "Building solutions that were flexible enough to handle varying data inputs while remaining user-friendly for non-technical staff.",
-      solutions: "Created modular systems with comprehensive error handling and clear documentation to ensure usability across the organization.",
-      link: "https://github.com/username/excel-automation",
+      challenges: "Integrating innovative API solutions with legacy systems, ensuring data security and privacy, and educating consumers to build trust in a rapidly evolving digital landscape.",
+      solutions: "Developed a modular strategy inspired by global open banking models, incorporating best practices in cybersecurity, governance, and consumer engagement to facilitate a smooth transition and promote sustainable financial innovation.",
+      link: "https://docs.google.com/presentation/d/1xOB2Q0rU4IYucIJZvZSiG94OYv4H-zvm/edit?usp=sharing&ouid=115504416394371835946&rtpof=true&sd=true"
     },
     {
       id: 4,
@@ -181,7 +181,7 @@ export function ProjectsSection() {
                 <img 
                   src={selectedProject.image} 
                   alt={selectedProject.title} 
-                  className="w-full h-64 object-cover rounded-lg mb-4"
+                  className="w-full h-60 object-cover rounded-lg mb-4"
                 />
                 
                 <div className="flex flex-wrap gap-2 mb-4">
