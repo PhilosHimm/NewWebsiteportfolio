@@ -54,6 +54,7 @@ export function HeroSection() {
           >
             <h1 className="text-4xl font-medium text-gray-900 dark:text-white mb-2">Philos Himm</h1>
             <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p>
+            <p className="text-gray-500 dark:text-gray-400 text-md mb-4">📍 Toronto, ON</p>
 
             {/* Social Media Icons */}
             <div className="flex space-x-4 mb-6">

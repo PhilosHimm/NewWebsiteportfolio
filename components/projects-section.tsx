@@ -12,7 +12,7 @@ export function ProjectsSection() {
   const projects = [
     {
       id: 1,
-      title: "Personal Portfolio Website",
+      title: "Personal Portfolio Website v1",
       description: "A professional portfolio website showcasing skills, work experience, and certifications with a minimalist black-and-white theme using HTML & Bootstrap for responsive design.",
       image: "/htmlportfolio.png",
       category: "Web",
@@ -70,26 +70,25 @@ export function ProjectsSection() {
     },
     {
       id: 4,
-      title: "Data Visualization Dashboard",
-      description: "Interactive data visualization dashboard for business insights using Power BI.",
-      image: "/placeholder.svg?height=400&width=600",
+      title: "Breakthrough Program Mentor",
+      description: "Mentor guiding first-year students through academic and professional workshops at the Ted Rogers School of Management.",
+      image: "/Breakthroughmentor.jpg",
       category: "Business",
-      tags: ["Power BI", "SQL", "Data Analysis"],
+      tags: ["Mentorship", "Leadership", "Coaching", "Workshops"],
       detailedDescription: `
-        This interactive dashboard transforms complex business data into actionable insights through intuitive visualizations.
+        As a mentor in the Breakthrough Program, I guided first-year students through a series of academic and professional workshops designed to ease their transition into the Toronto Metropolitan University community. The program focuses on developing personal, professional, and academic skills, empowering students to break out of their shell and form meaningful relationships.
         
-        Features include:
-        • Real-time KPI tracking
-        • Drill-down capabilities for detailed analysis
-        • Multi-dimensional data comparisons
-        • Customizable reporting options
-        • Automated refresh from multiple data sources
+        Key aspects of the program include:
+        • Interactive workshops that cover both academic challenges and career development.
+        • One-on-one mentoring sessions to provide personalized guidance.
+        • Opportunities to network with like-minded peers and experienced professionals.
+        • Continuous support beyond scheduled sessions to foster growth and leadership.
         
-        The dashboard has become an essential tool for executive decision-making.
+        This role honed my leadership and coaching abilities, while contributing to the development of future leaders at the Ted Rogers School of Management.
       `,
-      challenges: "Integrating data from multiple systems and ensuring performance with large datasets presented significant technical hurdles.",
-      solutions: "Implemented optimized data models and created a streamlined ETL process to ensure responsive dashboard performance even with complex queries.",
-      link: "https://github.com/username/data-dashboard",
+      challenges: "Balancing diverse student needs and ensuring that each mentee received personalized support while maintaining engaging and effective workshop sessions.",
+      solutions: "Implemented structured workshop frameworks and scheduled dedicated mentoring sessions, creating an environment that encouraged open communication, collaboration, and continuous personal development.",
+      link: "https://www.trssociety.ca/breakthrough-program",
     },
   ]
 
@@ -111,7 +110,7 @@ export function ProjectsSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl font-medium text-center mb-8 text-gray-900 dark:text-white">
-          Projects [Work In Progress]
+          Projects and Professional Development
           <div className="h-1 w-20 bg-blue-600 mx-auto mt-2 rounded-full"></div>
         </h2>
 
@@ -181,7 +180,7 @@ export function ProjectsSection() {
                 <img 
                   src={selectedProject.image} 
                   alt={selectedProject.title} 
-                  className="w-full h-60 object-cover rounded-lg mb-4"
+                  className="w-full h-full object-cover rounded-lg mb-4"
                 />
                 
                 <div className="flex flex-wrap gap-2 mb-4">
