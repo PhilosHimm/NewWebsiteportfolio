@@ -54,7 +54,7 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         // Custom palette colors
-        darkgray: "#131516",
+        charcoalGrey: "#121212",
         blueaccent: "#6883BA",
       },
       borderRadius: {

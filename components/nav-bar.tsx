@@ -18,6 +18,8 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [scrollY, setScrollY] = useState(0)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const [showNavbar, setShowNavbar] = useState(true)
   const [activeSection, setActiveSection] = useState(isExperiencePage ? "experience" : "home")
   const router = useRouter()
   const pathname = usePathname()
@@ -42,12 +44,22 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     }
 
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      const currentScrollY = window.scrollY
+      setScrollY(currentScrollY)
+      
+      // Determine whether to show or hide navbar based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNavbar(false) // Scrolling down and past threshold, hide navbar
+      } else {
+        setShowNavbar(true) // Scrolling up or at top, show navbar
+      }
+      
+      setLastScrollY(currentScrollY)
 
       // Only track active section on home page
       if (!isExperiencePage) {
         const sections = ["home", "experience", "projects", "education", "skills", "contact"]
-        const scrollPosition = window.scrollY + 300
+        const scrollPosition = currentScrollY + 300
 
         for (const section of sections) {
           const element = document.getElementById(section)
@@ -64,9 +76,9 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [isExperiencePage])
+  }, [isExperiencePage, lastScrollY])
 
   const navItems = [
     { id: "home", label: "Home", icon: <Home className="h-5 w-5" /> },
@@ -155,11 +167,16 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <header
+      {/* Desktop Navigation - Material Design App Bar */}
+      <motion.header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrollY > 50 ? "bg-white dark:bg-gray-900 shadow-md" : "bg-transparent"
+          scrollY > 50 
+            ? "bg-white dark:bg-gray-900 md-elevation-2" 
+            : "bg-white dark:bg-gray-900 md-elevation-1" // Fully opaque in dark mode
         }`}
+        initial={{ top: 0 }}
+        animate={{ top: showNavbar ? 0 : -64 }} // 64px is the height of the navbar
+        transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -267,14 +284,19 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Bottom Navigation */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+      <motion.div 
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+        initial={{ bottom: 0 }}
+        animate={{ bottom: showNavbar ? 0 : -64 }}
+        transition={{ duration: 0.3 }}
+      >
         <div className="flex justify-around">
           {navItems.map((item) => renderMobileNavItem(item))}
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

@@ -71,7 +71,7 @@ export function ContactSection() {
       >
         <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">
           Contact Me
-          <div className="h-1 w-20 bg-blue-600 mx-auto mt-2 rounded-full"></div>
+          <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -116,14 +116,14 @@ export function ContactSection() {
           </div>
 
           <div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+            <div className="bg-white dark:bg-[var(--card)] rounded-lg p-6 md-card md-elevation-1">
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center h-full py-8"
                 >
-                  <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-600 dark:text-green-300 mb-4">
+                  <div className="w-16 h-16 rounded-full bg-[hsla(var(--secondary),0.15)] dark:bg-[hsla(var(--secondary),0.25)] flex items-center justify-center text-[hsl(var(--secondary))] dark:text-[hsl(var(--secondary))] mb-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-8 w-8"
@@ -157,7 +157,7 @@ export function ContactSection() {
                         value={formState.name}
                         onChange={handleChange}
                         required
-                        className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
+                        className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-[var(--input)]"
                       />
                     </div>
 
@@ -175,7 +175,7 @@ export function ContactSection() {
                         value={formState.email}
                         onChange={handleChange}
                         required
-                        className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
+                        className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-[var(--input)]"
                       />
                     </div>
 
@@ -193,13 +193,13 @@ export function ContactSection() {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
+                        className="rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-[var(--input)]"
                       />
                     </div>
 
                     <Button
                       type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow-md"
+                      className="w-full bg-[hsl(var(--primary))] hover:bg-[hsla(var(--primary),0.8)] text-white rounded-md material-button md-elevation-1 hover:md-elevation-2"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (

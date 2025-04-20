@@ -59,7 +59,7 @@ export function WorkExperienceSection() {
       >
         <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">
           Work Experience
-          <div className="h-1 w-20 bg-blue-600 mx-auto mt-2 rounded-full"></div>
+          <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -70,7 +70,7 @@ export function WorkExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+              className="bg-white dark:bg-[var(--card)] rounded-lg overflow-hidden md-card md-elevation-1 hover:md-elevation-3 transition-all duration-300 flex flex-col h-full"
             >
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex items-center mb-4">
@@ -84,7 +84,7 @@ export function WorkExperienceSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-medium text-gray-900 dark:text-white">{experience.role}</h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-medium">{experience.company}</p>
+                    <p className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))] font-medium">{experience.company}</p>
                   </div>
                 </div>
 
@@ -103,9 +103,9 @@ export function WorkExperienceSection() {
 
                 <div className="mt-auto">
                   <Link href={`/experience/${experience.id}`}>
-                    <Button className="w-full bg-blueaccent hover:bg-blueaccent/80 text-white flex items-center justify-center">
+                    <Button className="w-full bg-[hsl(var(--primary))] hover:bg-[hsla(var(--primary),0.8)] text-white flex items-center justify-center material-button">
                       View Details
-                      <ArrowRight className="ml-  2 h-4 w-4" />
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 </div>

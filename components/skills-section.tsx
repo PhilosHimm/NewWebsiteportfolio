@@ -48,11 +48,11 @@ export function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="py-16 bg-gray-50 dark:bg-gray-900/50">
+    <section id="skills" className="py-16 bg-gray-50 dark:bg-[var(--background)]">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white">
           Skills
-          <div className="h-1 w-20 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+          <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -63,7 +63,7 @@ export function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+              className="bg-white dark:bg-[var(--card)] rounded-lg md-card md-elevation-1 hover:md-elevation-3 transition-all duration-300 p-6"
             >
               <h3 className="text-xl font-semibold mb-6 text-gray-800 dark:text-white text-center">
                 {category.name}
@@ -77,7 +77,7 @@ export function SkillsSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
                     viewport={{ once: true }}
-                    className="flex flex-col items-center justify-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    className="flex flex-col items-center justify-center p-3 bg-[hsla(var(--primary),0.05)] dark:bg-[hsla(var(--primary),0.1)] rounded-lg hover:bg-[hsla(var(--primary),0.1)] dark:hover:bg-[hsla(var(--primary),0.15)] transition-colors"
                   >
                     <div className="mb-2">
                       {skill.icon}

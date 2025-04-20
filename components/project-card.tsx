@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <motion.div
-      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 w-full h-[400px] flex flex-col"
+      className="bg-white dark:bg-[var(--card)] md-card rounded-lg overflow-hidden md-elevation-1 hover:md-elevation-3 transition-shadow duration-300 w-full h-[400px] flex flex-col"
       whileHover={{ y: -5 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -34,7 +34,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="p-6 flex-1 flex flex-col">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white truncate">{project.title}</h3>
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 whitespace-nowrap ml-2 flex-shrink-0">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[hsla(var(--primary),0.15)] text-[hsl(var(--primary))] dark:bg-[hsla(var(--primary),0.25)] dark:text-[hsl(var(--primary))] whitespace-nowrap ml-2 flex-shrink-0">
             {project.category}
           </span>
         </div>
@@ -43,7 +43,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-[hsla(var(--secondary),0.1)] text-[hsl(var(--secondary))] dark:bg-[hsla(var(--secondary),0.15)] dark:text-[hsl(var(--secondary))]"
             >
               {tag}
             </span>
@@ -51,7 +51,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <div className="mt-auto">
           <motion.button
-            className="flex items-center text-blue-600 dark:text-blue-400 font-medium"
+            className="flex items-center text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))] font-medium material-button"
             animate={{ x: isHovered ? 5 : 0 }}
             transition={{ duration: 0.2 }}
           >
