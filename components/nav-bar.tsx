@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -18,7 +18,7 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [scrollY, setScrollY] = useState(0)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const lastScrollYRef = useRef(0)
   const [showNavbar, setShowNavbar] = useState(true)
   const [activeSection, setActiveSection] = useState(isExperiencePage ? "experience" : "home")
   const router = useRouter()
@@ -46,28 +46,20 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       setScrollY(currentScrollY)
-      
-      // Determine whether to show or hide navbar based on scroll direction
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowNavbar(false) // Scrolling down and past threshold, hide navbar
-      } else {
-        setShowNavbar(true) // Scrolling up or at top, show navbar
-      }
-      
-      setLastScrollY(currentScrollY)
+      const lastY = lastScrollYRef.current
+      setShowNavbar(!(currentScrollY > lastY && currentScrollY > 100))
+      lastScrollYRef.current = currentScrollY
 
-      // Only track active section on home page
       if (!isExperiencePage) {
-        const sections = ["home", "experience", "projects", "education", "skills", "contact"]
-        const scrollPosition = currentScrollY + 300
-
+        const headerOffset = 80 // pixels below top where active section changes
+        const sections = ["contact", "skills", "education", "projects", "experience", "home"]
         for (const section of sections) {
-          const element = document.getElementById(section)
-          if (element) {
-            const offsetTop = element.offsetTop
-            const offsetHeight = element.offsetHeight
-
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          const el = document.querySelector(`#${section}`)
+          if (el) {
+            const style = window.getComputedStyle(el)
+            if (style.visibility === 'hidden') continue
+            const rect = el.getBoundingClientRect()
+            if (rect.top <= headerOffset) {
               setActiveSection(section)
               break
             }
@@ -77,8 +69,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
+    // call once to set correct active section on load
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [isExperiencePage, lastScrollY])
+  }, [isExperiencePage])
 
   const navItems = [
     { id: "home", label: "Home", icon: <Home className="h-5 w-5" /> },
@@ -106,7 +100,6 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         </Link>
       );
     }
-    
     return (
       <Button
         key={item.id}
@@ -114,54 +107,59 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         className={`px-4 py-2 rounded-full ${
           activeSection === item.id
             ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-            : "text-gray-700 dark:text-gray-300"
+            : "text-gray-700 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground dark:hover:bg-gray-700 dark:hover:text-white"
         }`}
-        onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() => {
+          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
+          setActiveSection(item.id) // Immediately update active section on click
+        }}
       >
         {item.label}
       </Button>
     );
   };
 
-  // Same logic for mobile items
+  // Same logic for mobile items but without the underline
   const renderMobileNavItem = (item: { id: string, label: string, icon: React.ReactNode }) => {
     if (isExperiencePage) {
       return (
         <Link 
           href={`/#${item.id}`} 
           key={item.id}
-          className={`flex flex-col items-center justify-center py-2 flex-1 relative ${
+          className={`flex flex-col items-center justify-center py-2 flex-1 ${
             activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"
           }`}
         >
           {item.icon}
           <span className="text-xs mt-1">{item.label}</span>
-          {activeSection === item.id && <div className="absolute top-0 w-1/5 h-0.5 bg-blue-600 dark:bg-blue-400" />}
         </Link>
       );
     }
-    
     return (
       <button
         key={item.id}
-        onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() => {
+          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
+          setActiveSection(item.id) // Immediately update active section on click
+        }}
         className={`flex flex-col items-center justify-center py-2 flex-1 ${
-          activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"
+          activeSection === item.id
+            ? "text-blue-600 dark:text-blue-400"
+            : "text-gray-500 dark:text-gray-400 hover:text-white dark:hover:text-white hover:bg-gray-700 dark:hover:bg-gray-800"
         }`}
       >
         {item.icon}
         <span className="text-xs mt-1">{item.label}</span>
-        {activeSection === item.id && <div className="absolute top-0 w-1/5 h-0.5 bg-blue-600 dark:bg-blue-400" />}
       </button>
     );
   };
 
   function scrollToSection(id: string): void {
     if (isExperiencePage) {
-      // Use router.push with replace for better UX without page reload
       router.push(`/#${id}`, { scroll: false });
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(id); // Update active section
     }
   }
 
