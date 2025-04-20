@@ -59,7 +59,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                Hi, I'm Philos Himm
+                Hi, I'm Philos Himm -
               </motion.span>{" "}
               <motion.span
                 className="inline-block text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]"
@@ -67,7 +67,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                Business Technology Management
+              Business Technology Management
               </motion.span>{" "}
               <motion.span
                 className="inline-block"

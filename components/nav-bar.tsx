@@ -49,23 +49,6 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
       const lastY = lastScrollYRef.current
       setShowNavbar(!(currentScrollY > lastY && currentScrollY > 100))
       lastScrollYRef.current = currentScrollY
-
-      if (!isExperiencePage) {
-        const headerOffset = 80 // pixels below top where active section changes
-        const sections = ["contact", "skills", "education", "projects", "experience", "home"]
-        for (const section of sections) {
-          const el = document.querySelector(`#${section}`)
-          if (el) {
-            const style = window.getComputedStyle(el)
-            if (style.visibility === 'hidden') continue
-            const rect = el.getBoundingClientRect()
-            if (rect.top <= headerOffset) {
-              setActiveSection(section)
-              break
-            }
-          }
-        }
-      }
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -73,6 +56,30 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isExperiencePage])
+
+  // Highlight nav links based on section in view using IntersectionObserver
+  useEffect(() => {
+    if (isExperiencePage || typeof window === 'undefined') return
+    const headerEl = document.querySelector('header')
+    const headerHeight = headerEl?.getBoundingClientRect().height || 0
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }, {
+      root: null,
+      rootMargin: `-${headerHeight}px 0px 0px 0px`,
+      threshold: 0.1,
+    })
+    const sections = ["home", "experience", "projects", "education", "skills", "contact"]
+    sections.forEach(id => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [isExperiencePage, mounted])
 
   const navItems = [
     { id: "home", label: "Home", icon: <Home className="h-5 w-5" /> },
