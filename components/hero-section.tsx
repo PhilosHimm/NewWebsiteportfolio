@@ -52,8 +52,33 @@ export function HeroSection() {
             transition={{ duration: 0.5 }}
             className="md:w-2/3 flex flex-col md:items-start items-center md:text-left text-center"
           >
-            <h1 className="text-4xl font-medium text-gray-900 dark:text-white mb-2">Philos Himm</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+              <motion.span
+                className="inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Hi, I'm Philos Himm -
+              </motion.span>{" "}
+              <motion.span
+                className="inline-block text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+              Business Technology Management
+              </motion.span>{" "}
+              <motion.span
+                className="inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                Student
+              </motion.span>
+            </h1>
+            {/* <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p> */}
             <p className="text-gray-500 dark:text-gray-400 text-md mb-4">📍 Toronto, ON</p>
 
             {/* Social Media Icons */}

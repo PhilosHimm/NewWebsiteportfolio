@@ -1,17 +1,19 @@
+"use client" // Add this directive for client-side hooks and components
+
+import React, { JSX } from 'react'
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { NavBar } from "@/components/nav-bar"
-// new import for pagination
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { motion } from "framer-motion" // Correct import
 
 interface ExperiencePageProps {
   params: {
@@ -95,11 +97,8 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   }
 
   const experience = experiences[params.id as keyof typeof experiences]
-  
-  // NEW: Compute experience keys to pass into the PaginationDemo
   const experienceKeys = Object.keys(experiences)
 
-  // Get the next experience ID
   const getNextExperienceId = () => {
     const experienceKeys = Object.keys(experiences);
     const currentIndex = experienceKeys.indexOf(params.id);
@@ -131,7 +130,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
         <div className="flex justify-between items-center mb-8">
           <Link href="/#experience" className="inline-flex items-center text-blue-600 dark:text-blue-400">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Experience
+            Back to Home
           </Link>
           <Link 
             href={`/experience/${nextExperienceId}`} 
@@ -142,7 +141,13 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
           </Link>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <motion.div
+          key={params.id} // Key for animation trigger on route change
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+        >
           <div className="p-6 md:p-8 border-b border-gray-200 dark:border-gray-700">
             <div className="flex flex-col md:flex-row md:items-center">
               <div className="w-24 h-24 relative rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 mb-4 md:mb-0 md:mr-6">
@@ -204,19 +209,18 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Replace static PaginationDemo with dynamic pagination */}
         <div className="mt-12 pb-12">
-          <PaginationDemo experiences={experienceKeys} currentId={params.id} />
+          <PaginationComponent experiences={experienceKeys} currentId={params.id} />
         </div>
       </div>
     </main>
   )
 }
 
-// Replace existing PaginationDemo with a dynamic one
-export function PaginationDemo({ experiences, currentId }: { experiences: string[]; currentId: string }) {
+// Corrected Pagination Component with explicit return type
+function PaginationComponent({ experiences, currentId }: { experiences: string[]; currentId: string }): JSX.Element { // Add explicit return type
   const currentIndex = experiences.indexOf(currentId);
   const prevId = experiences[(currentIndex - 1 + experiences.length) % experiences.length];
   const nextId = experiences[(currentIndex + 1) % experiences.length];
@@ -227,7 +231,7 @@ export function PaginationDemo({ experiences, currentId }: { experiences: string
         <PaginationItem>
           <PaginationPrevious href={`/experience/${prevId}`} />
         </PaginationItem>
-        {experiences.map((expId, index) => (
+        {experiences.map((expId: string, index: number) => (
           <PaginationItem key={expId}>
             <PaginationLink href={`/experience/${expId}`} isActive={expId === currentId}>
               {index + 1}

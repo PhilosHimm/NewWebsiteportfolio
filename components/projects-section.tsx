@@ -92,7 +92,7 @@ export function ProjectsSection() {
     },
   ]
 
-  const categories = ["All", "Web", "Mobile", "Business"]
+  const categories = [ "Web", "Mobile", "Business"]
 
   const filteredProjects =
     selectedCategory === "All" ? projects : projects.filter((project) => project.category === selectedCategory)
@@ -109,43 +109,53 @@ export function ProjectsSection() {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-medium text-center mb-8 text-gray-900 dark:text-white">
-          Projects and Professional Development
-          <div className="h-1 w-20 bg-blue-600 mx-auto mt-2 rounded-full"></div>
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">
+          Projects
+          <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </h2>
-
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
+        
+        <div className="space-y-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+            <button
+              onClick={() => setSelectedCategory("All")}
+              className={`px-4 py-2 rounded-full text-sm font-medium ${
+                selectedCategory === "All"
+                  ? "bg-[hsl(var(--primary))] text-white"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+              }`}
+            >
+              All
+            </button>
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium ${
                   selectedCategory === category
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                    ? "bg-[hsl(var(--primary))] text-white"
+                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }`}
               >
                 {category}
               </button>
             ))}
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onClick={() => setSelectedProjectId(project.id)}
-              className="cursor-pointer"
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                onClick={() => setSelectedProjectId(project.id)}
+                className="cursor-pointer"
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
 

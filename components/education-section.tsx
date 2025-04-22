@@ -6,7 +6,7 @@ import { FaGraduationCap, FaCertificate, FaCheckCircle, FaLaptopCode, FaTools, F
 
 export function EducationSection() {
   return (
-    <section id="education" className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section id="education" className="py-16 bg-gray-50 dark:bg-[var(--background)]">
       <div className="container mx-auto px-4">
         <motion.h2 
           className="text-3xl font-bold mb-10 text-center text-gray-800 dark:text-white relative"
@@ -16,30 +16,30 @@ export function EducationSection() {
         >
           <span className="inline-block mr-2"></span>
           Education
-          <div className="h-1 w-20 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+          <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </motion.h2>
         
         <div className="max-w-4xl mx-auto">
           {/* Main Education Card */}
           <motion.div 
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500"
+            className="bg-white dark:bg-[var(--card)] p-6 rounded-lg md-card md-elevation-1 hover:md-elevation-3 transition-all duration-300 border-l-4 border-[hsl(var(--primary))]"
             whileHover={{ y: -5 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
             <div className="flex items-center mb-4">
-              <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900 mr-3">
-                <FaGraduationCap className="text-blue-500 text-xl" />
+              <div className="p-3 rounded-full bg-[hsla(var(--primary),0.15)] dark:bg-[hsla(var(--primary),0.25)] mr-3">
+                <FaGraduationCap className="text-[hsl(var(--primary))] text-xl" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200">Toronto Metropolitan University</h3>
-                <p className="text-blue-600 dark:text-blue-400 font-medium">Bachelor of Commerce, Business Technology Management Co-op</p>
+                <p className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))] font-medium">Bachelor of Commerce, Business Technology Management Co-op</p>
               </div>
             </div>
             <div className="pl-12">
               <p className="text-gray-500 dark:text-gray-400 mb-4 flex items-center">
-                <span className="inline-block w-4 mr-2"><FaCheckCircle className="text-green-500" /></span>
+                <span className="inline-block w-4 mr-2"><FaCheckCircle className="text-[hsl(var(--secondary))]" /></span>
                 September 2022 - Expected April 2027
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
@@ -55,7 +55,7 @@ export function EducationSection() {
                   {["Outlook", "Word", "PowerPoint", "Excel", "Power BI", "MS Teams", "HTML", "CSS"].map((skill, i) => (
                     <motion.span 
                       key={skill}
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm"
+                      className="px-2 py-1 bg-[hsla(var(--primary),0.1)] dark:bg-[hsla(var(--primary),0.15)] rounded-md text-sm text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
@@ -75,7 +75,7 @@ export function EducationSection() {
                   {["Agile Methodologies", "Jira", "Figma", "SQL", "Market research", "Gathering user feedback", "Python"].map((skill, i) => (
                     <motion.span 
                       key={skill}
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm"
+                      className="px-2 py-1 bg-[hsla(var(--secondary),0.1)] dark:bg-[hsla(var(--secondary),0.15)] rounded-md text-sm text-[hsl(var(--secondary))] dark:text-[hsl(var(--secondary))]"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + (i * 0.1) }}
@@ -94,17 +94,17 @@ export function EducationSection() {
                 transition={{ delay: 0.5 }}
               >
                 <div className="flex items-center mb-4">
-                  <div className="p-2 rounded-full bg-purple-100 dark:bg-purple-900 mr-3">
-                    <FaCertificate className="text-purple-500 text-lg" />
+                  <div className="p-2 rounded-full bg-[hsla(var(--accent),0.15)] dark:bg-[hsla(var(--accent),0.25)] mr-3">
+                    <FaCertificate className="text-[hsl(var(--accent))] text-lg" />
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200">Ted Rogers School of Management</h4>
-                    <p className="text-purple-600 dark:text-purple-400 font-medium">Professional Development Bootcamps</p>
+                    <p className="text-[hsl(var(--accent))] dark:text-[hsl(var(--accent))] font-medium">Professional Development Bootcamps</p>
                   </div>
                 </div>
                 <div className="pl-11">
                   <p className="text-gray-500 dark:text-gray-400 mb-4 flex items-center">
-                    <span className="inline-block w-4 mr-2"><FaCheckCircle className="text-green-500" /></span>
+                    <span className="inline-block w-4 mr-2"><FaCheckCircle className="text-[hsl(var(--secondary))]" /></span>
                     2022 - Present
                   </p>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -119,13 +119,13 @@ export function EducationSection() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 + (i * 0.1) }}
                       >
-                        <span className="text-purple-500 mr-2">✓</span> {cert}
+                        <span className="text-[hsl(var(--secondary))] mr-2">✓</span> {cert}
                       </motion.li>
                     ))}
                   </ul>
-                  <div className="mt-4 p-3 bg-purple-50 dark:bg-purple-900/30 rounded-md border border-purple-100 dark:border-purple-800">
+                  <div className="mt-4 p-3 bg-[hsla(var(--accent),0.05)] dark:bg-[hsla(var(--accent),0.1)] rounded-md border border-[hsla(var(--accent),0.2)]">
                     <p className="text-gray-700 dark:text-gray-200 font-medium flex items-center">
-                      <span className="mr-2"><FaTrophy className="text-yellow-500" /></span>
+                      <span className="mr-2"><FaTrophy className="text-[#f5c518]" /></span>
                       Notable Achievement:
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 mt-1 ml-6">
