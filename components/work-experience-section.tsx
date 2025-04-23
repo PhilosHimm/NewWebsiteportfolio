@@ -103,7 +103,7 @@ export function WorkExperienceSection() {
 
                 <div className="mt-auto">
                   <Link href={`/experience/${experience.id}`}>
-                    <Button className="w-full bg-[hsl(var(--primary))] hover:bg-[hsla(var(--primary),0.8)] text-white flex items-center justify-center material-button">
+                    <Button className="w-full bg-[hsl(var(--primary))] hover:bg-[hsla(var(--primary),0.9)] hover:text-[hsl(var(--primary))] dark:hover:text-white hover:shadow-md dark:hover:bg-[hsla(var(--primary),0.8)] text-white flex items-center justify-center material-button">
                       View Details
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
