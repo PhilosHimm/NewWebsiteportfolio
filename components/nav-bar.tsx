@@ -152,10 +152,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
           ref={assignRef}
           href={`/#${item.id}`}
           key={item.id}
-          className={`px-4 py-2 rounded-full inline-flex items-center justify-center h-10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
+          className={`px-4 py-2 rounded-full inline-flex items-center justify-center h-10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative z-10 ${
             activeSection === item.id
-              ? "text-blue-600 dark:text-blue-400"
-              : "text-gray-700 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground"
+              ? "text-blue-600 dark:text-blue-400 font-semibold"
+              : "text-gray-700 dark:text-gray-300 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           }`}
         >
           {item.label}
@@ -167,10 +167,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         ref={assignRef}
         key={item.id}
         variant="ghost"
-        className={`px-4 py-2 rounded-full ${
+        className={`px-4 py-2 rounded-full relative z-10 ${
           activeSection === item.id
-            ? "text-blue-600 dark:text-blue-400"
-            : "text-gray-700 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground dark:hover:bg-gray-700 dark:hover:text-white"
+            ? "text-blue-600 dark:text-blue-400 font-semibold"
+            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
         }`}
         onClick={() => {
           document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
@@ -256,10 +256,8 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
             </div>
 
             <div ref={navContainerRef} className="hidden md:flex items-center space-x-1 relative">
-              {navItems.map((item, index) => renderNavItem(item, index))}
-
               <motion.div
-                className="absolute top-0 h-full rounded-full bg-blue-50 dark:bg-blue-900/30 pointer-events-none"
+                className="absolute top-0 h-full rounded-full bg-blue-100/80 dark:bg-blue-900/20 pointer-events-none z-0"
                 style={{
                   left: highlighterStyle.left,
                   width: highlighterStyle.width,
@@ -273,6 +271,8 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
                 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
               />
+              
+              {navItems.map((item, index) => renderNavItem(item, index))}
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
