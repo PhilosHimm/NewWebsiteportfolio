@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowDown, Linkedin, Github } from "lucide-react"
+import { ArrowDown, Linkedin, Github, ArrowRight } from "lucide-react" // Added ArrowRight
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { useTheme } from "next-themes"
+import "../styles/animated-button.css" // Import the new CSS file
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -119,14 +120,16 @@ export function HeroSection() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 shadow-md"
+              <button
+                type="button"
+                className="animated-explore-button"
                 onClick={() => {
                   document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })
                 }}
               >
-                Explore My Work
-              </Button>
+                <span className="text">Explore My Work</span>
+                <ArrowRight className="icon" />
+              </button>
               <Button
                 variant="outline"
                 className="border-gray-300 dark:border-gray-700 px-6"

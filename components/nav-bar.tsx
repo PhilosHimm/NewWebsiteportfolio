@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -24,23 +24,24 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const router = useRouter()
   const pathname = usePathname()
 
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const navItemRefs = useRef<(HTMLElement | null)[]>([]);
+  const [highlighterStyle, setHighlighterStyle] = useState({ left: 0, width: 0, opacity: 0 });
+
   useEffect(() => {
     setMounted(true)
 
-    // If on experience page, always highlight the experience section
     if (isExperiencePage) {
       setActiveSection("experience")
-    }
-    // For the home page, check for hash in URL on initial load
-    else if (typeof window !== 'undefined' && window.location.hash) {
-      const hash = window.location.hash.substring(1); // remove the # symbol
+    } else if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.substring(1);
       setTimeout(() => {
         const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
           setActiveSection(hash);
         }
-      }, 100); // Small delay to ensure DOM is ready
+      }, 100);
     }
 
     const handleScroll = () => {
@@ -52,12 +53,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
-    // call once to set correct active section on load
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isExperiencePage])
 
-  // Highlight nav links based on section in view using IntersectionObserver
   useEffect(() => {
     if (isExperiencePage || typeof window === 'undefined') return
     const headerEl = document.querySelector('header')
@@ -70,8 +69,8 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
       })
     }, {
       root: null,
-      rootMargin: `-${headerHeight}px 0px 0px 0px`,
-      threshold: 0.1,
+      rootMargin: `-${headerHeight}px 0px -10px 0px`,
+      threshold: 0.5,
     })
     const sections = ["home", "experience", "projects", "education", "skills", "contact"]
     sections.forEach(id => {
@@ -81,25 +80,81 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     return () => observer.disconnect()
   }, [isExperiencePage, mounted])
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { id: "home", label: "Home", icon: <Home className="h-5 w-5" /> },
     { id: "experience", label: "Experience", icon: <Briefcase className="h-5 w-5" /> },
     { id: "projects", label: "Projects", icon: <Briefcase className="h-5 w-5" /> },
     { id: "education", label: "Education", icon: <GraduationCap className="h-5 w-5" /> },
     { id: "skills", label: "Skills", icon: <Code className="h-5 w-5" /> },
     { id: "contact", label: "Contact", icon: <Mail className="h-5 w-5" /> },
-  ]
+  ], []);
 
-  // Use Link component instead of router.push for better hash handling
-  const renderNavItem = (item: { id: string, label: string, icon: React.ReactNode }) => {
+  useEffect(() => {
+    navItemRefs.current = Array(navItems.length).fill(null);
+  }, [navItems.length]);
+
+  const updateHighlighterPosition = useCallback(() => {
+    if (!mounted || !navContainerRef.current) {
+      setHighlighterStyle({ left: 0, width: 0, opacity: 0 });
+      return;
+    }
+
+    const activeItemIndex = navItems.findIndex(item => item.id === activeSection);
+    if (activeItemIndex === -1) {
+        setHighlighterStyle({ left: 0, width: 0, opacity: 0 });
+        return;
+    }
+    const activeNavItemEl = navItemRefs.current[activeItemIndex];
+
+    if (activeNavItemEl && navContainerRef.current) {
+      const containerRect = navContainerRef.current.getBoundingClientRect();
+      const itemRect = activeNavItemEl.getBoundingClientRect();
+
+      const left = itemRect.left - containerRect.left;
+      const width = itemRect.width;
+
+      if (width > 0 && containerRect.width > 0) {
+        setHighlighterStyle({ left, width, opacity: 1 });
+      } else {
+        setHighlighterStyle({ left: 0, width: 0, opacity: 0 });
+      }
+    } else {
+      setHighlighterStyle({ left: 0, width: 0, opacity: 0 });
+    }
+  }, [mounted, activeSection, navItems, theme]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updateHighlighterPosition();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [updateHighlighterPosition]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const handleResize = () => {
+      updateHighlighterPosition();
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mounted, updateHighlighterPosition]);
+
+  const renderNavItem = (item: { id: string, label: string, icon: React.ReactNode }, index: number) => {
+    const assignRef = (el: HTMLElement | null) => {
+      if (navItemRefs.current && index < navItemRefs.current.length) {
+        navItemRefs.current[index] = el;
+      }
+    };
+
     if (isExperiencePage) {
       return (
-        <Link 
-          href={`/#${item.id}`} 
+        <Link
+          ref={assignRef}
+          href={`/#${item.id}`}
           key={item.id}
           className={`px-4 py-2 rounded-full inline-flex items-center justify-center h-10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
             activeSection === item.id
-              ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
+              ? "text-blue-600 dark:text-blue-400"
               : "text-gray-700 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground"
           }`}
         >
@@ -109,16 +164,17 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     }
     return (
       <Button
+        ref={assignRef}
         key={item.id}
         variant="ghost"
         className={`px-4 py-2 rounded-full ${
           activeSection === item.id
-            ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
+            ? "text-blue-600 dark:text-blue-400"
             : "text-gray-700 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground dark:hover:bg-gray-700 dark:hover:text-white"
         }`}
         onClick={() => {
           document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
-          setActiveSection(item.id) // Immediately update active section on click
+          setActiveSection(item.id)
         }}
       >
         {item.label}
@@ -126,7 +182,6 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
     );
   };
 
-  // Same logic for mobile items but without the underline
   const renderMobileNavItem = (item: { id: string, label: string, icon: React.ReactNode }) => {
     if (isExperiencePage) {
       return (
@@ -147,7 +202,7 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         key={item.id}
         onClick={() => {
           document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
-          setActiveSection(item.id) // Immediately update active section on click
+          setActiveSection(item.id)
         }}
         className={`flex flex-col items-center justify-center py-2 flex-1 ${
           activeSection === item.id
@@ -166,21 +221,20 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
       router.push(`/#${id}`, { scroll: false });
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(id); // Update active section
+      setActiveSection(id);
     }
   }
 
   return (
     <>
-      {/* Desktop Navigation - Material Design App Bar */}
       <motion.header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrollY > 50 
             ? "bg-white dark:bg-gray-900 md-elevation-2" 
-            : "bg-white dark:bg-gray-900 md-elevation-1" // Fully opaque in dark mode
+            : "bg-white dark:bg-gray-900 md-elevation-1"
         }`}
         initial={{ top: 0 }}
-        animate={{ top: showNavbar ? 0 : -64 }} // 64px is the height of the navbar
+        animate={{ top: showNavbar ? 0 : -64 }}
         transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-4">
@@ -201,10 +255,25 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
               </Link>
             </div>
 
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => renderNavItem(item))}
+            <div ref={navContainerRef} className="hidden md:flex items-center space-x-1 relative">
+              {navItems.map((item, index) => renderNavItem(item, index))}
 
-              {/* Theme Dropdown */}
+              <motion.div
+                className="absolute top-0 h-full rounded-full bg-blue-50 dark:bg-blue-900/30 pointer-events-none"
+                style={{
+                  left: highlighterStyle.left,
+                  width: highlighterStyle.width,
+                  opacity: highlighterStyle.opacity,
+                }}
+                initial={false}
+                animate={{
+                  left: highlighterStyle.left,
+                  width: highlighterStyle.width,
+                  opacity: highlighterStyle.opacity,
+                }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              />
+
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" size="icon" className="rounded-full ml-2">
@@ -261,7 +330,6 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
                       </Button>
                     ))}
 
-                    {/* Theme Options */}
                     <div className="mt-6 px-4">
                       <p className="text-sm font-medium text-gray-500 mb-2">Theme</p>
                       <div className="grid grid-cols-3 gap-2">
@@ -291,7 +359,6 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         </div>
       </motion.header>
 
-      {/* Mobile Bottom Navigation */}
       <motion.div 
         className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
         initial={{ bottom: 0 }}
