@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,11 +24,12 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="526f1f97-299f-49e3-836e-dc66df4c90cd"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
 }
-
-
-
-import './globals.css'
