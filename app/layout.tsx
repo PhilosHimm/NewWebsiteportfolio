@@ -29,6 +29,18 @@ export default function RootLayout({
           data-website-id="526f1f97-299f-49e3-836e-dc66df4c90cd"
           strategy="afterInteractive"
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LKPQ2XLLD4"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-LKPQ2XLLD4');
+          `}
+        </Script>
       </body>
     </html>
   )
