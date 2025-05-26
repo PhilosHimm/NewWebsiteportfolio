@@ -90,9 +90,54 @@ export function ProjectsSection() {
       solutions: "Implemented structured workshop frameworks and scheduled dedicated mentoring sessions, creating an environment that encouraged open communication, collaboration, and continuous personal development.",
       link: "https://www.trssociety.ca/breakthrough-program",
     },
+    {
+      id: 5,
+      title: "Nike Social Media Analytics Project",
+      description: "Group project analyzing Nike's brand sentiment across multiple social media platforms using data analytics and custom Python scripts.",
+      image: "/ITM795project.png",
+      category: "Data",
+      tags: ["Python", "Data Analysis", "Social Media", "Sentiment Analysis", "Marketing"],
+      detailedDescription: `
+        As part of ITM795 – Social Media Analytics (Fall 2024), our team conducted comprehensive brand analysis and social sentiment research on Nike using:
+        
+        • Communalytic and Reddit datasets to evaluate campaign effectiveness and audience perception
+        • Multi-platform analysis across Bluesky, Reddit, Instagram, and YouTube
+        • Custom Python scripts with pandas, TextBlob, and VADER for sentiment and toxicity analysis
+        • Analysis of over 2,600 social media records to identify discourse clusters
+        
+        My primary contribution focused on writing the "Data Analysis and Results" section, where I summarized our findings across multiple platforms and interpreted the data to provide actionable marketing recommendations for Nike.
+      `,
+      challenges: "Handling diverse data structures from different social platforms, filtering relevant content from large datasets, and developing accurate sentiment analysis models that could account for context-specific language and slang used in social media.",
+      solutions: "Implemented custom Python scripts for data normalization and developed platform-specific analysis methodologies. Created visualizations to identify trends and collaborated with team members to triangulate findings across platforms for comprehensive insights.",
+      link: "",
+    },
+    {
+      id: 6,
+      title: "How Unemployment Affects Consumer Spending and Saving Behavior",
+      description: "Analysis of 24 years of Canadian economic data to understand relationships between unemployment, savings, and consumer expenditure patterns.",
+      image: "/ITM618project.png",
+      category: "Data",
+      tags: ["Python", "Data Analysis", "Economics", "Statistical Analysis", "Excel"],
+      detailedDescription: `
+        For ITM618 – Business Intelligence & Analytics at Toronto Metropolitan University, I conducted a comprehensive analysis of Canadian economic trends from 2000-2024, focusing on:
+        
+        • Analysis of monthly economic data spanning 24 years from Capital IQ and Trading Economics, examining correlations between unemployment, savings behavior, and retail sales.
+        
+        • Implementation of exploratory data analysis techniques using Python and Excel to visualize trends and identify patterns, particularly during economic disruptions like the COVID-19 pandemic.
+        
+        • Statistical correlation analysis to quantify relationships between key economic indicators, revealing a moderate positive correlation between unemployment rates and savings behavior.
+        
+        • Detailed trend visualization showing how retail sales demonstrated resilience despite unemployment fluctuations, contradicting some traditional economic assumptions.
+        
+        The project culminated in a presentation of actionable insights for both policymakers and businesses, highlighting strategies to adapt to consumer behavior during economic fluctuations.
+      `,
+      challenges: "Normalizing data from different sources spanning more than two decades, isolating the impact of unemployment from other economic factors, and developing meaningful visualizations to communicate complex economic relationships.",
+      solutions: "Implemented rigorous data preprocessing techniques, utilized multiple analytical methods to triangulate findings, and created compelling visualizations that clearly illustrated the counterintuitive relationships between unemployment and consumer behavior.",
+      link: "",
+    },
   ]
 
-  const categories = [ "Web", "Mobile", "Business"]
+  const categories = [ "Web", "Mobile", "Business", "Data"]
 
   const filteredProjects =
     selectedCategory === "All" ? projects : projects.filter((project) => project.category === selectedCategory)
@@ -110,7 +155,7 @@ export function ProjectsSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">
-          Projects
+          Projects & Leadership/Student Engagement
           <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </h2>
         
