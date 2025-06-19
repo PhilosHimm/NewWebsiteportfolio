@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, MapPin, ArrowRight } from "lucide-react"
+import { Calendar, MapPin, ArrowRight, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -16,7 +16,12 @@ interface WorkExperience {
   logo: string
 }
 
-export function WorkExperienceSection() {
+export function WorkExperienceSection() {  const handleDownloadResume = () => {
+    // Open the resume PDF in a new tab
+    const resumeUrl = '/Philos Himm Resume.pdf';
+    window.open(resumeUrl, '_blank');
+  };
+
   const experiences: WorkExperience[] = [
     {
       id: "salvation-army",
@@ -56,11 +61,21 @@ export function WorkExperienceSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-      >
-        <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">
+      >        <h2 className="text-3xl font-medium text-center mb-12 text-gray-900 dark:text-white">
           Work Experience
           <div className="h-1 w-20 bg-[hsl(var(--primary))] mx-auto mt-2 rounded-full"></div>
         </h2>
+
+        <div className="flex justify-center mb-8">
+          <Button
+            onClick={handleDownloadResume}
+            variant="outline"
+            className="inline-flex items-center border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-colors duration-200"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Download Resume PDF
+          </Button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {experiences.map((experience, index) => (

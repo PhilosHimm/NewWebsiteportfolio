@@ -1,10 +1,11 @@
 "use client" // Add this directive for client-side hooks and components
 
 import React, { JSX } from 'react'
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Download } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { NavBar } from "@/components/nav-bar"
+import { Button } from "@/components/ui/button"
 import {
   Pagination,
   PaginationContent,
@@ -107,6 +108,11 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   };
 
   const nextExperienceId = getNextExperienceId();
+  const handleDownloadResume = () => {
+    // Open the resume PDF in a new tab
+    const resumeUrl = '/Philos Himm Resume.pdf';
+    window.open(resumeUrl, '_blank');
+  };
 
   if (!experience) {
     return (
@@ -126,12 +132,21 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
       <NavBar isExperiencePage={true} />
-      <div className="container mx-auto px-4 py-6 mt-8">
-        <div className="flex justify-between items-center mb-8">
+      <div className="container mx-auto px-4 py-6 mt-8">        <div className="flex justify-between items-center mb-8">
           <Link href="/#experience" className="inline-flex items-center text-blue-600 dark:text-blue-400">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Link>
+          
+          <Button
+            onClick={handleDownloadResume}
+            variant="outline"
+            className="inline-flex items-center text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Download PDF
+          </Button>
+          
           <Link 
             href={`/experience/${nextExperienceId}`} 
             className="inline-flex items-center text-blue-600 dark:text-blue-400"

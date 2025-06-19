@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowDown, Linkedin, Github, ArrowRight } from "lucide-react" // Added ArrowRight
+import { ArrowDown, Linkedin, Github, ArrowRight, Mail } from "lucide-react" // Added ArrowRight and Mail
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Switch } from "@/components/ui/switch"
@@ -52,37 +52,34 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="md:w-2/3 flex flex-col md:items-start items-center md:text-left text-center"
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          >            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 <motion.span
                 className="inline-block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.5, delay: 0.2 }}
                 >
-                 <span className="underline decoration-[hsl(var(--primary))] decoration-2">B</span>ridging Business & Technology  
-                </motion.span>{" "}
+                 <span className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]">B</span>usiness-first thinking  
+                </motion.span><br />
                 <motion.span
-                className="inline-block text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]"
+                className="inline-block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.5, delay: 0.3 }}
                 >
-                <span className="underline decoration-black dark:decoration-white decoration-2">T</span>urning Data into Decisions  
-                </motion.span>{" "}
+                <span className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]">T</span>ech-fueled building  
+                </motion.span><br />
               <motion.span
                 className="inline-block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.5, delay: 0.4 }}
               >
-              <span className="underline decoration-[hsl(var(--primary))] decoration-2">M</span>astering Management Strategies
+              <span className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]">M</span>omentum through learning
               </motion.span>
             </h1>
             {/* <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p> */}
-            <p className="text-gray-500 dark:text-gray-400 text-md mb-4">📍 Toronto, ON</p>
-
-            {/* Social Media Icons */}
+            <p className="text-gray-500 dark:text-gray-400 text-md mb-4">📍 Toronto, ON</p>            {/* Social Media Icons */}
             <div className="flex space-x-4 mb-6">
               <Link href="https://www.linkedin.com/in/philos-himm/" target="_blank" rel="noopener noreferrer">
                 <Button
@@ -104,13 +101,23 @@ export function HeroSection() {
                   <span className="sr-only">GitHub Profile</span>
                 </Button>
               </Link>
+              <Link href="mailto:phimm@torontomu.ca">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full bg-blue-900 text-blueaccent dark:text-blue-400 hover:bg-blue-800"
+                >
+                  <Mail className="h-5 w-5" />
+                  <span className="sr-only">Email Contact</span>
+                </Button>
+              </Link>
             </div>
 
             
             
             <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-md">
-            👋 Hi there! As a BTM student, I’m diving into data analytics, automation and UX design. I like to craft Next.js apps, 
-            Power BI dashboards and process-automation scripts which reflect my continuous learning and my commitment to practical, scalable results.
+            👋 Hi there! I'm a BTM student passionate about turning complex data into clean design.
+             I'm learning to build web apps with React/Next.js, analyze trends with Excel and Power BI, and design user-focused digital solutions.
             </p>
 
             {/* Dark Mode Toggle */}
