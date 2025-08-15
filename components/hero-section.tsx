@@ -38,7 +38,7 @@ export function HeroSection() {
             <div className="relative mx-auto w-48 h-48">
               <div className="absolute inset-0 rounded-full bg-blue-400/30 animate-pulse"></div>
               <img
-                src="/ProfilePic.jpg"
+                src="/Notionpfp.png"
                 alt="Profile Picture"
                 className="relative z-10 w-full h-full rounded-full shadow-lg object-cover object-[0,30%] 
                 outline outline-4 outline-blue-400/30 outline-offset-2"
