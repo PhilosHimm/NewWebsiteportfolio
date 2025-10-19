@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import { motion } from "framer-motion"
-import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
+import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -352,17 +352,6 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
           </div>
         </div>
       </motion.header>
-
-      <motion.div 
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
-        initial={{ bottom: 0 }}
-        animate={{ bottom: showNavbar ? 0 : -64 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="flex justify-around">
-          {navItems.map((item) => renderMobileNavItem(item))}
-        </div>
-      </motion.div>
     </>
   )
 }

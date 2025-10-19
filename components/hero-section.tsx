@@ -27,24 +27,8 @@ export function HeroSection() {
   return (
     <section id="home" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          {/* Image on left side */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="md:w-1/3 relative"
-          >
-            <div className="relative mx-auto w-48 h-48">
-              <div className="absolute inset-0 rounded-full bg-blue-400/30 animate-pulse"></div>
-              <img
-                src="/notionpfp.png"
-                alt="Profile Picture"
-                className="relative z-10 w-full h-full rounded-full shadow-lg object-cover object-[0,30%] 
-                outline outline-4 outline-blue-400/30 outline-offset-2"
-              />
-            </div>
-          </motion.div>
+        <div className="flex flex-col items-center gap-8 text-center">
+        
 
           {/* Content on right side */}
           <motion.div
@@ -53,30 +37,13 @@ export function HeroSection() {
             transition={{ duration: 0.5 }}
             className="md:w-2/3 flex flex-col md:items-start items-center md:text-left text-center"
           >            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                <motion.span
-                className="inline-block"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.5, delay: 0.2 }}
-                >
-                 <span className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]">B</span>usiness-first thinking  
-                </motion.span><br />
-                <motion.span
-                className="inline-block"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.5, delay: 0.3 }}
-                >
-                <span className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]">T</span>ech-fueled building  
-                </motion.span><br />
-              <motion.span
-                className="inline-block"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.5, delay: 0.4 }}
-              >
-              <span className="text-[hsl(var(--primary))] dark:text-[hsl(var(--primary))]">M</span>omentum through learning
-              </motion.span>
+                Hi! I'm Philos
+                <img
+                  src="/notionpfp.png"
+                  alt="Profile Picture"
+                  className="inline-block w-8 h-8 rounded-full ml-2 align-middle"
+                />,
+                an aspiring UX/Product designer and business analyst passionate about creating impactful digital experiences
             </h1>
             {/* <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p> */}
             <p className="text-gray-500 dark:text-gray-400 text-md mb-4">📍 Toronto, ON</p>            {/* Social Media Icons */}
