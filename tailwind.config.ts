@@ -65,6 +65,7 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 0.2rem)",
         sm: "calc(var(--radius) - 0.4rem)",
+        DEFAULT: "var(--radius)",
       },
       keyframes: {
         "accordion-down": {
