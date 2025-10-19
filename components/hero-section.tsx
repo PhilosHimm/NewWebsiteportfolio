@@ -36,14 +36,16 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="md:w-2/3 flex flex-col md:items-start items-center md:text-left text-center"
-          >            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          >            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-relaxed">
                 Hi! I'm Philos
                 <img
                   src="/notionpfp.png"
                   alt="Profile Picture"
-                  className="inline-block w-8 h-8 rounded-full ml-2 align-middle"
-                />,
-                an aspiring UX/Product designer and business analyst passionate about creating impactful digital experiences
+                  className="inline-block w-16 h-16 rounded-full ml-2 align-middle"
+                />
+            </h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                An aspiring UX/Product designer and business analyst passionate about creating impactful <span className="font-playfair italic">digital experiences</span>
             </h1>
             {/* <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">Business Technology Management @ Toronto Metropolitan University</p> */}
             <p className="text-gray-500 dark:text-gray-400 text-md mb-4">📍 Toronto, ON</p>            {/* Social Media Icons */}
@@ -82,10 +84,10 @@ export function HeroSection() {
 
             
             
-            <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-md">
+            {/* <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-md">
             👋 Hi there! I'm a BTM student passionate about turning complex data into clean design.
              I'm learning to build web apps with React/Next.js, analyze trends with Excel and Power BI, and design user-focused digital solutions.
-            </p>
+            </p> */}
 
             {/* Dark Mode Toggle */}
             <div className="flex items-center space-x-2 mb-5">
