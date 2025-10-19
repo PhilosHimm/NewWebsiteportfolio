@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowRight, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -39,12 +40,19 @@ export function HeroSection() {
         <motion.div {...animationProps}>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
             Hi! I'm Philos
+            <Image
+              src="/notionpfp.png"
+              alt="Notion Profile Picture"
+              width={50}
+              height={50}
+              className="inline-block ml-2 align-middle rounded-full"
+            />
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
             An aspiring UX/Product designer and business analyst passionate about creating 
-            impactful digital experiences
-          </p>
+            impactful <span className="font-serif italic">digital experiences</span>
+            </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/projects">
