@@ -75,7 +75,7 @@ export function BentoGrid() {
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div>
                 <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                  10+
+                  5+
                 </div>
                 <p className="text-sm text-muted-foreground">Projects Completed</p>
               </div>

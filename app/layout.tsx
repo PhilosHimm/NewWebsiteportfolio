@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${playfairDisplay.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Header />
-          <main>{children}</main>
+          <main className="pt-24">{children}</main>
           <Footer />
         </ThemeProvider>
         <Script

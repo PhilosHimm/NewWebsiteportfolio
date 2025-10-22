@@ -23,12 +23,39 @@ export function Header() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [circle, setCircle] = useState<{x: number, y: number} | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      if (Math.abs(delta) < 10) {
+        return;
+      }
+
+      if (currentScrollY < 80) {
+        setIsVisible(true);
+      } else if (delta > 0) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Get the background color for the next theme
@@ -49,19 +76,7 @@ export function Header() {
   }
 
   function handleThemeSwitch(e: React.MouseEvent<HTMLButtonElement>) {
-    if (!buttonRef.current) return setTheme(theme === "dark" ? "light" : "dark");
-    const rect = buttonRef.current.getBoundingClientRect();
-    setCircle({
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2,
-    });
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setTheme(theme === "dark" ? "light" : "dark");
-    }, 200);
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 700);
+    setTheme(theme === "dark" ? "light" : "dark");
   }
 
   // Calculate overlay size
@@ -69,9 +84,18 @@ export function Header() {
   const nextBg = getNextThemeBg();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <motion.header 
+      className="fixed top-0 left-0 right-0 z-50 mx-auto mt-4 max-w-[95%] lg:max-w-6xl pointer-events-none"
+      initial={{ y: 0, opacity: 1 }}
+      animate={{ 
+        y: isVisible ? 0 : -150,
+        opacity: isVisible ? 1 : 0
+      }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      style={{ willChange: 'transform, opacity' }}
+    >
       {/* Theme transition overlay */}
-      {isTransitioning && circle && (
+      {circle && (
         <motion.div
           initial={{
             opacity: 0.7,
@@ -98,7 +122,7 @@ export function Header() {
           }}
         />
       )}
-      <nav className="container mx-auto px-4 h-16 flex items-center justify-between" aria-label="Main navigation">
+      <nav className="relative rounded-full border border-border/40 bg-background/90 dark:bg-card/90 backdrop-blur-md shadow-lg px-6 py-3 flex items-center justify-between pointer-events-auto" aria-label="Main navigation">
         <Link 
           href="/" 
           className="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
@@ -113,7 +137,7 @@ export function Header() {
           />
         </Link>
 
-        <ul className="hidden md:flex items-center gap-6">
+        <ul className="hidden md:flex items-center gap-6 ml-auto mr-4">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -125,7 +149,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={`text-sm font-medium transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 ${
-                    isActive ? "text-primary" : "text-muted-foreground"
+                    isActive ? "text-primary" : "text-foreground/80"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -143,7 +167,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={handleThemeSwitch}
-              className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="focus:ring-2 focus:ring-primary focus:ring-offset-2 text-foreground/80 hover:text-foreground"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -159,7 +183,7 @@ export function Header() {
             <select
               value={pathname}
               onChange={(e) => window.location.href = e.target.value}
-              className="bg-background border rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              className="bg-background/80 border border-border rounded-full px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Mobile navigation"
             >
               {navItems.map((item) => (
@@ -171,6 +195,6 @@ export function Header() {
           </div>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 }
