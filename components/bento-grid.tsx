@@ -11,16 +11,18 @@ import { cn } from "@/lib/utils"
 const BentoCard = ({
   children,
   className,
+  delay = 0,
 }: {
   children: React.ReactNode
   className?: string
+  delay?: number
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
       className={cn("group relative overflow-hidden", className)}
     >
       <Card className="h-full border-border/40 bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:border-primary/20">
@@ -35,9 +37,8 @@ export function BentoGrid() {
     <section className="py-20 px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]">
-          
           {/* Large Feature Card - Projects */}
-          <BentoCard className="md:col-span-2 lg:row-span-2">
+          <BentoCard className="md:col-span-2 lg:row-span-2" delay={0.1}>
             <CardContent className="p-6 h-full flex flex-col justify-between relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
               <div className="relative z-10">
@@ -59,7 +60,7 @@ export function BentoGrid() {
           </BentoCard>
 
           {/* Quick Stats */}
-          <BentoCard>
+          <BentoCard delay={0.2}>
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div>
                 <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -71,7 +72,7 @@ export function BentoGrid() {
           </BentoCard>
 
           {/* Skills Highlight */}
-          <BentoCard>
+          <BentoCard delay={0.3}>
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div>
                 <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
