@@ -25,7 +25,7 @@ const BentoCard = ({
       transition={{ duration: 0.6, ease: "easeOut", delay }}
       className={cn("group relative overflow-hidden", className)}
     >
-      <Card className="h-full border-border/40 bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+      <Card className="h-full border border-white/20 bg-white/10 backdrop-blur-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/30">
         {children}
       </Card>
     </motion.div>
@@ -36,12 +36,12 @@ export function BentoGrid() {
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]">
           {/* Large Feature Card - Projects */}
           <BentoCard className="md:col-span-2 lg:row-span-2" delay={0.1}>
-            <CardContent className="p-6 h-full flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
-              <div className="relative z-10">
+            <CardContent className="p-6 h-full flex flex-col justify-between relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent pointer-events-none" />
+              <div className="relative z-10 flex-1">
                 <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-4">
                   <Code className="h-8 w-8 text-primary" />
                 </div>
