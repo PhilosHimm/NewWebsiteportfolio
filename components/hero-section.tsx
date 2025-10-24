@@ -6,6 +6,7 @@ import { ArrowRight, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import SplitText from "@/components/split-text"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -32,6 +33,7 @@ export function HeroSection() {
       transition: {
         staggerChildren: 0.15,
         delayChildren: 0.1,
+        duration: 0.5, // Updated animation speed to 500ms
       },
     },
   }
@@ -43,7 +45,7 @@ export function HeroSection() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.7,
+        duration: 0.5, // Updated animation speed to 500ms
         ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth motion
       },
     },
@@ -56,7 +58,7 @@ export function HeroSection() {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.5, // Updated animation speed to 500ms
         delay: 0.3,
         type: "spring",
         stiffness: 200,
@@ -72,7 +74,7 @@ export function HeroSection() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.5, // Updated animation speed to 500ms
         staggerChildren: 0.1,
       },
     },
@@ -84,7 +86,7 @@ export function HeroSection() {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.4,
+        duration: 0.5, // Updated animation speed to 500ms
       },
     },
   }
@@ -99,14 +101,24 @@ export function HeroSection() {
           initial={prefersReducedMotion ? undefined : "hidden"}
           animate={prefersReducedMotion ? undefined : "visible"}
         >
-          <motion.h1
-            variants={prefersReducedMotion ? undefined : itemVariants}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
-          >
-            Hi! I'm Philos
+          <div className="mb-6 flex items-center justify-center gap-2 flex-wrap">
+            <SplitText
+              text="Hi! I'm Philos"
+              tag="h1"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight"
+              splitType="chars"
+              delay={50}
+              duration={0.8}
+              ease="power3.out"
+              from={{ opacity: 0, y: 50, rotateX: -90 }}
+              to={{ opacity: 1, y: 0, rotateX: 0 }}
+              threshold={0.2}
+              rootMargin="0px"
+              textAlign="center"
+            />
             <motion.span
               variants={prefersReducedMotion ? undefined : imageVariants}
-              className="inline-block ml-2 align-middle"
+              className="inline-flex items-center"
             >
               <Image
                 src="/notionpfp.png"
@@ -116,7 +128,7 @@ export function HeroSection() {
                 className="rounded-full"
               />
             </motion.span>
-          </motion.h1>
+          </div>
 
           <motion.p
             variants={prefersReducedMotion ? undefined : itemVariants}

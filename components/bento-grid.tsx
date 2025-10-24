@@ -7,6 +7,7 @@ import { ArrowRight, Briefcase, Camera, Code, Mail, User } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import CountUp from "@/components/count-up"
 
 const BentoCard = ({
   children,
@@ -64,7 +65,7 @@ export function BentoGrid() {
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div>
                 <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                  3+
+                  <CountUp to={3} duration={2} delay={0.2} />+
                 </div>
                 <p className="text-sm text-muted-foreground">Years Experience</p>
               </div>
@@ -76,7 +77,7 @@ export function BentoGrid() {
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div>
                 <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                  5+
+                  <CountUp to={5} duration={2} delay={0.3} />+
                 </div>
                 <p className="text-sm text-muted-foreground">Projects Completed</p>
               </div>
