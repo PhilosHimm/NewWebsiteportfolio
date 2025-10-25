@@ -6,6 +6,8 @@ import { getProject, getAllProjects } from "@/lib/projects"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, Figma, ArrowLeft } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 interface ProjectPageProps {
   params: {
@@ -57,6 +59,27 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
             <p className="text-xl text-muted-foreground mb-6">{project.description}</p>
             
+            {/* Role, Timeline, Tools metadata */}
+            {(project.role || project.timeline || project.tools) && (
+              <div className="space-y-2 mb-6">
+                {project.role && (
+                  <p className="text-sm">
+                    <strong>Role:</strong> {project.role}
+                  </p>
+                )}
+                {project.timeline && (
+                  <p className="text-sm">
+                    <strong>Timeline:</strong> {project.timeline}
+                  </p>
+                )}
+                {project.tools && (
+                  <p className="text-sm">
+                    <strong>Tools:</strong> {project.tools}
+                  </p>
+                )}
+              </div>
+            )}
+            
             <div className="flex flex-wrap gap-2 mb-8">
               {project.tags.map((tag) => (
                 <Badge key={tag} variant="secondary">
@@ -82,7 +105,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
                     <Button>
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      Live Site
+                      Preview
                     </Button>
                   </Link>
                 )}
@@ -106,28 +129,44 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             )}
           </header>
 
-          <div className="space-y-12">
-            <section>
-              <h2 className="text-3xl font-semibold mb-4">Problem</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.problem}
-              </p>
-            </section>
+          {/* New markdown content format */}
+          {project.content ? (
+            <div className="prose prose-lg dark:prose-invert max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {project.content}
+              </ReactMarkdown>
+            </div>
+          ) : (
+            /* Fallback to old format if no content field */
+            <div className="space-y-12">
+              {project.problem && (
+                <section>
+                  <h2 className="text-3xl font-semibold mb-4">Problem</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {project.problem}
+                  </p>
+                </section>
+              )}
 
-            <section>
-              <h2 className="text-3xl font-semibold mb-4">Approach</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.approach}
-              </p>
-            </section>
+              {project.approach && (
+                <section>
+                  <h2 className="text-3xl font-semibold mb-4">Approach</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {project.approach}
+                  </p>
+                </section>
+              )}
 
-            <section>
-              <h2 className="text-3xl font-semibold mb-4">Impact</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.impact}
-              </p>
-            </section>
-          </div>
+              {project.impact && (
+                <section>
+                  <h2 className="text-3xl font-semibold mb-4">Impact</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {project.impact}
+                  </p>
+                </section>
+              )}
+            </div>
+          )}
         </article>
 
         <div className="mt-16 pt-8 border-t">
