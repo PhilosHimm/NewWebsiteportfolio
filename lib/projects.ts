@@ -322,7 +322,7 @@ Heavy use of GitHub Copilot throughout the build process. Rather than hand-codin
 * Meets accessibility standards for inclusive education
 * Clean, maintainable codebase following React best practices`,
     links: {
-      github: "https://github.com/PhilosHimm/ceid100-platform",
+      github: "https://github.com/PhilosHimm/feed-escape-guide",
       live: "https://feed-escape-guide.vercel.app/",
     },
   },
