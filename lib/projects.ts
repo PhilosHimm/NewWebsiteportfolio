@@ -23,18 +23,22 @@ export const projects: Project[] = [
   {
     slug: "studyspotsto",
     title: "StudySpotsTO",
-    description: "A web platform to discover and share the best study locations around campus",
+    description: "A mobile app prototype to discover and share the best study locations around campus",
     image: "/project-pics/studyspots-render.png",
-    tags: ["UX Design", "Mobile Design", "Figma", "Prototyping"],
+    tags: ["UX Design", "Mobile Design", "Figma", "Prototyping", "Course Project"],
     role: "UX Designer & Researcher",
     timeline: "May - July 2025 (12 weeks)",
     tools: "Figma, Notion, Google Forms, Nielsen Heuristics",
-    content: `## The Problem
+    content: `**Course:** CFPN535 Final Project, Toronto Metropolitan University
 
+---
+    
+## The Problem
 Toronto students waste valuable study time wandering campus looking for quiet spaces with outlets and Wi-Fi. Between classes, they often arrive at cafés or libraries only to find them overcrowded or unsuitable. Generic tools like Google Maps don't provide study-specific filters (noise level, outlet availability, seating comfort), leaving students frustrated during peak exam periods.
 
 **How might we help students quickly find reliable study spaces that match their specific academic needs?**
 
+---
 
 ## Research
 
@@ -59,6 +63,7 @@ Conducted user research across TMU, UofT, and other Toronto institutions:
 
 Created **Emily Chen**, a 21-year-old Commerce student with a 1-hour commute who studies in short blocks between classes. She needs fast, reliable information to maximize productivity during 35-minute gaps and values community contribution.
 
+---
 
 ## Design Process
 
@@ -82,6 +87,7 @@ Defined three core scenarios:
 
 Broke down each task into subtasks with functional and non-functional requirements (e.g., "results load in <2 seconds," "WCAG 2.1 compliant").
 
+---
 
 ## Lo-Fi Prototyping
 
@@ -95,6 +101,7 @@ Created hand-drawn wireframes for:
 
 **Platform pivot:** Initially planned as mobile-optimized web app, shifted to **fully native mobile** based on feedback that students primarily use phones on campus.
 
+---
 
 ## Evaluation
 
@@ -115,6 +122,7 @@ Conducted peer and self-evaluation using Nielsen's heuristics:
 - Implemented active nav indicators
 - Surfaced key amenities (outlets, Wi-Fi, noise) on result cards using badges
 
+---
 
 ## Final Prototype
 
@@ -145,6 +153,7 @@ Built polished mobile interface with:
 
 **Focused on:** Curated, consistent user reviews that help students make informed decisions without relying on real-time data.
 
+---
 
 ## Outcomes & Learnings
 
@@ -197,24 +206,124 @@ This project involved a complete redesign and rebuild of the Toronto AI Communit
   },
   {
     slug: "ceid100",
-    title: "CEID100 Learning Platform",
-    description: "Interactive learning platform for entrepreneurship and innovation course",
+    title: "Feed Escape Guide: Digital Wellness Education Platform",
+    description: "Interactive web application teaching digital literacy to Toronto high school students",
     image: "/projects/ceid100.jpg",
-    tags: ["Education", "Next.js", "PostgreSQL", "Prisma"],
-    content: `## Project Overview
+    tags: ["React", "TypeScript", "Tailwind CSS", "UX Design", "Course Project"],
+    role: "Frontend Development & UX Designer",
+    timeline: "May–July 2025 (13 weeks)",
+    tools: "React, TypeScript, Tailwind CSS, Vite, shadcn/ui",
+    content: `**Course:** CEID100 Capstone Project, Toronto Metropolitan University
 
-A full-stack learning management system designed for the CEID100 entrepreneurship and innovation course.
+---
 
-*Detailed case study coming soon...*
+As the technical lead on this collaborative project, I was responsible for:
 
-## Key Features
+* Web application architecture and development
+* UI/UX implementation and responsive design
+* Integration of content provided by the research team
+* Deployment and hosting on Vercel
+* Leveraging AI tools to accelerate development workflow
 
-- User authentication and authorization
-- Assignment submission and management
-- Project collaboration tools
-- Admin dashboard for instructors`,
+**Collaboration:** Worked with team members who conducted content research, academic source curation, and educational material development aligned with CEID100 course requirements.
+
+---
+
+## The Challenge
+
+Create educational media teaching digital literacy to Toronto high school students who use social media daily but lack understanding of its underlying mechanisms and risks. The deliverable needed to be engaging, research-backed, and actionable.
+
+**Key constraints:**
+
+* Target audience: 15–18 year olds accustomed to polished digital experiences
+* Must address multiple digital wellness topics comprehensively
+* Required academic rigor with proper citations
+* Needed to work in classroom and self-study contexts
+
+---
+
+## The Solution
+
+Built an interactive web application with five core learning modules covering algorithms, mental health, misinformation, privacy, and digital balance. Each module combines educational content with hands-on activities.
+
+**Core Features:**
+
+* **Interactive Quiz:** Scenario-based decision-making with scoring and instant feedback
+* **Tracking Simulator:** Step-by-step visualization of how online tracking works
+* **Animated Flowchart:** Shows how recommendation algorithms create filter bubbles
+* **Tip Rating System:** Hands-on checklist for trying wellness strategies
+
+---
+
+## Design Process
+
+### Research & Content Development
+
+* Synthesized peer-reviewed research from digital media scholars
+* Identified key pain points: sleep disruption, attention fragmentation, privacy erosion, misinformation
+* Structured content around actionable takeaways students could implement immediately
+* Created comprehensive sources page with proper academic attribution
+
+### Information Architecture
+
+* Designed modular structure allowing independent or sequential learning
+* Built progressive disclosure: concepts build on each other
+* Kept sections scannable with clear visual hierarchy
+* Added navigation that works for both linear and exploratory learners
+
+### Visual & Interaction Design
+
+* Chose calming color palette to reduce cognitive load (students already overwhelmed by screens)
+* Selected unique photography for each module creating distinct visual identity
+* Designed interactive components as "learning by doing" experiences
+* Ensured mobile-responsive layouts for on-the-go access
+
+### Technical Implementation
+
+**Stack:** React + TypeScript, Vite, Tailwind CSS, shadcn/ui
+
+**Development Approach:**
+
+Heavy use of GitHub Copilot throughout the build process. Rather than hand-coding every component, I focused on design direction, content structure, and UX decisions while leveraging AI pair programming to accelerate development. This "vibe coding" approach let me iterate quickly on interactive features and polish the user experience.
+
+**Key Decisions:**
+
+* Modern component-based architecture with React Router for navigation
+* shadcn/ui (Radix primitives) for accessible, production-ready components
+* Tailwind for rapid styling iteration
+* Static site generation for simple deployment
+
+**Accessibility:**
+
+* Semantic HTML with proper heading hierarchy
+* ARIA labels for screen readers
+* Keyboard navigation fully supported
+* High contrast ratios meeting WCAG standards
+* Mobile-optimized touch targets
+
+---
+
+## Results & Impact
+
+**Academic Performance:** Achieved 92% grade on capstone project
+
+**Learning Outcomes Delivered:**
+
+* Students can identify engagement hooks and algorithmic manipulation
+* Understand practical privacy protection techniques
+* Apply verification strategies before sharing content
+* Build sustainable digital wellness routines
+* Make informed decisions about app permissions and data sharing
+
+**Technical Achievements:**
+
+* Production-ready application deployable to any static host
+* Fully responsive across mobile, tablet, desktop
+* Meets accessibility standards for inclusive education
+* Clean, maintainable codebase following React best practices`,
     links: {
       github: "https://github.com/PhilosHimm/ceid100-platform",
+      live: "https://feed-escape-guide.vercel.app/",
     },
   },
 ]
