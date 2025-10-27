@@ -25,7 +25,7 @@ export function Footer() {
           <div>
             <h2 className="font-bold text-xl mb-4">Philos</h2>
             <p className="text-sm text-muted-foreground">
-              UX/Product designer and business analyst passionate about creating impactful digital experiences.
+              Business Analyst and aspiring UX/Product Designer passionate about creating impactful digital experiences.
             </p>
           </div>
 
