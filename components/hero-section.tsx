@@ -107,13 +107,9 @@ export function HeroSection() {
               tag="h1"
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight"
               splitType="chars"
-              delay={50}
+              delay={0.05}
               duration={0.8}
-              ease="power3.out"
-              from={{ opacity: 0, y: 50, rotateX: -90 }}
-              to={{ opacity: 1, y: 0, rotateX: 0 }}
-              threshold={0.2}
-              rootMargin="0px"
+              ease="easeOut"
               textAlign="center"
             />
             <motion.span
