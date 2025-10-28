@@ -2,12 +2,13 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useState, useEffect, useRef } from "react"
+import { projects } from "@/lib/projects"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -27,6 +28,10 @@ export function Header() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  // Get featured projects for dropdown
+  const featuredProjects = projects.slice(0, 4);
 
   useEffect(() => {
     setMounted(true);
@@ -140,22 +145,102 @@ export function Header() {
         <ul className="hidden md:flex items-center gap-6 ml-auto mr-4">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
+            
+            // Special handling for Projects dropdown
+            if (item.href === '/projects') {
+              return (
+                <motion.li
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('projects')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link
+                    href={item.href}
+                    className={`text-sm font-medium transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-4 py-2 relative ${
+                      isActive ? "text-primary" : "text-foreground/80"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="pill"
+                        className="absolute inset-0 bg-primary/10 dark:bg-primary/20 rounded-full -z-10"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    {item.label}
+                  </Link>
+
+                  <AnimatePresence>
+                    {activeDropdown === 'projects' && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.85, y: 10 }}
+                        transition={{
+                          type: "spring",
+                          mass: 0.5,
+                          damping: 11.5,
+                          stiffness: 100,
+                          restDelta: 0.001,
+                          restSpeed: 0.001,
+                        }}
+                        className="absolute top-[calc(100%_+_1.2rem)] right-0 pt-4 z-50"
+                      >
+                        <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl p-6">
+                          <div className="grid grid-cols-2 gap-6 min-w-[600px]">
+                            {featuredProjects.map((project) => (
+                              <Link
+                                key={project.slug}
+                                href={`/projects/${project.slug}`}
+                                className="flex space-x-3 hover:opacity-80 transition-opacity"
+                              >
+                                <img
+                                  src={project.image}
+                                  width={140}
+                                  height={70}
+                                  alt={project.title}
+                                  className="shrink-0 rounded-md shadow-2xl object-cover w-[140px] h-[70px]"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <h4 className="text-base font-bold mb-1 text-black dark:text-white truncate">
+                                    {project.title}
+                                  </h4>
+                                  <p className="text-neutral-700 text-xs line-clamp-2 dark:text-neutral-300">
+                                    {project.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.li>
+              );
+            }
+            
             return (
-              <motion.li
-                key={item.href}
-                whileHover={{ y: -6, scale: 1.07 }}
-                transition={{ type: "spring", stiffness: 350, damping: 18 }}
-              >
+              <li key={item.href} className="relative">
                 <Link
                   href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1 ${
+                  className={`text-sm font-medium transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full px-4 py-2 relative ${
                     isActive ? "text-primary" : "text-foreground/80"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
+                  {isActive && (
+                    <motion.span
+                      layoutId="pill"
+                      className="absolute inset-0 bg-primary/10 dark:bg-primary/20 rounded-full -z-10"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
                   {item.label}
                 </Link>
-              </motion.li>
+              </li>
             );
           })}
         </ul>

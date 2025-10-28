@@ -29,7 +29,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       onHoverEnd={() => setIsHovered(false)}
     >
       <div className="relative w-full aspect-[9/16]">
-        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-contain" />
+        <Image src={project.image || "/placeholder.jpg"} alt={project.title} fill className="object-contain" />
       </div>
       <div className="p-6 flex-1 flex flex-col">
         <div className="flex justify-between items-start mb-2">

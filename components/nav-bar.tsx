@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
+import { projects } from "@/lib/projects"
 
 interface NavBarProps {
   isExperiencePage?: boolean;
@@ -27,6 +28,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const navContainerRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLElement | null)[]>([]);
   const [highlighterStyle, setHighlighterStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  // Get featured projects for dropdown
+  const featuredProjects = projects.slice(0, 4);
 
   useEffect(() => {
     setMounted(true)
@@ -145,6 +150,80 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         navItemRefs.current[index] = el;
       }
     };
+
+    // Special handling for Projects dropdown
+    if (item.id === 'projects') {
+      return (
+        <div 
+          key={item.id}
+          className="relative"
+          onMouseEnter={() => setActiveDropdown('projects')}
+          onMouseLeave={() => setActiveDropdown(null)}
+        >
+          <Button
+            ref={assignRef}
+            variant="ghost"
+            className={`px-4 py-2 rounded-full relative z-10 ${
+              activeSection === item.id
+                ? "text-blue-600 dark:text-blue-400 font-semibold"
+                : "text-gray-700 dark:text-gray-300 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+            onClick={() => {
+              router.push('/projects')
+            }}
+          >
+            {item.label}
+          </Button>
+
+          <AnimatePresence>
+            {activeDropdown === 'projects' && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85, y: 10 }}
+                transition={{
+                  type: "spring",
+                  mass: 0.5,
+                  damping: 11.5,
+                  stiffness: 100,
+                  restDelta: 0.001,
+                  restSpeed: 0.001,
+                }}
+                className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4 z-50"
+              >
+                <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl p-4">
+                  <div className="text-sm grid grid-cols-2 gap-6 w-max">
+                    {featuredProjects.map((project) => (
+                      <Link
+                        key={project.slug}
+                        href={`/projects/${project.slug}`}
+                        className="flex space-x-2 hover:opacity-80 transition-opacity"
+                      >
+                        <img
+                          src={project.image}
+                          width={140}
+                          height={70}
+                          alt={project.title}
+                          className="shrink-0 rounded-md shadow-2xl object-cover"
+                        />
+                        <div>
+                          <h4 className="text-lg font-bold mb-1 text-black dark:text-white">
+                            {project.title}
+                          </h4>
+                          <p className="text-neutral-700 text-xs max-w-[10rem] dark:text-neutral-300">
+                            {project.description}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      );
+    }
 
     if (isExperiencePage) {
       return (

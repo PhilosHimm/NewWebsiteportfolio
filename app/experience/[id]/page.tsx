@@ -167,7 +167,7 @@ export default function ExperiencePage({ params }: ExperiencePageProps) {
             <div className="flex flex-col md:flex-row md:items-center">
               <div className="w-24 h-24 relative rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 mb-4 md:mb-0 md:mr-6">
                 <Image
-                  src={experience.logo || "/placeholder.svg"}
+                  src={experience.logo || "/placeholder.jpg"}
                   alt={`${experience.company} logo`}
                   fill
                   className="object-cover"
