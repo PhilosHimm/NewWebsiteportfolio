@@ -139,15 +139,19 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <motion.div variants={prefersReducedMotion ? undefined : buttonVariants}>
-              <Link href="/projects">
-                <Button
-                  size="lg"
-                  className="group focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                >
-                  View Projects
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                className="group focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                onClick={() => {
+                  document.getElementById("projects")?.scrollIntoView({ 
+                    behavior: "smooth",
+                    block: "start"
+                  })
+                }}
+              >
+                View Projects
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </motion.div>
 
             <motion.div variants={prefersReducedMotion ? undefined : buttonVariants}>

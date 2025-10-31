@@ -2,10 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { getAllProjects } from "@/lib/projects"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ExternalLink, Github } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Projects | Philos Portfolio",
@@ -25,40 +24,56 @@ export default function ProjectsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <Card key={project.slug} className="flex flex-col hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="relative w-full h-48 mb-4 bg-muted rounded-md overflow-hidden">
+            <Link key={project.slug} href={`/projects/${project.slug}`}>
+              <Card className="group h-full overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
+                {/* Project Image */}
+                <div className="relative aspect-video overflow-hidden bg-muted">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              
-              <CardContent className="flex-grow">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-              
-              <CardFooter>
-                <Link href={`/projects/${project.slug}`} className="w-full">
-                  <Button className="w-full group" variant="outline">
-                    View Case Study
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+
+                <CardContent className="p-6">
+                  {/* Title */}
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-primary font-medium flex items-center group-hover:gap-2 transition-all">
+                      View Case Study
+                      <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    
+                    {project.links.live && (
+                      <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
+                    )}
+                    {project.links.github && (
+                      <Github className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

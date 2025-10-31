@@ -1,11 +1,11 @@
 import { HeroSection } from "@/components/hero-section"
-import { BentoGrid } from "@/components/bento-grid"
+import { ProjectsPreviewSection } from "@/components/projects-preview-section"
 
 export default function Home() {
   return (
     <div>
       <HeroSection />
-      <BentoGrid />
+      <ProjectsPreviewSection />
     </div>
   )
 }
