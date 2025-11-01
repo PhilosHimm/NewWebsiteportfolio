@@ -91,14 +91,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="relative w-full h-[400px] bg-muted rounded-lg overflow-hidden mb-8">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1200px) 100vw, 1200px"
-              />
+              {project.video ? (
+                <video
+                  src={project.video}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                />
+              )}
             </div>
 
             {(project.links.live || project.links.github || project.links.figma) && (

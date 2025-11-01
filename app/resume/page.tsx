@@ -167,9 +167,11 @@ export default function ResumePage() {
         <div className="max-w-4xl mx-auto mb-12">
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-4xl font-bold">Resume</h1>
-            <Button>
-              <Download className="mr-2 h-4 w-4" />
-              Download PDF
+            <Button asChild>
+              <a href="/Philos%20Resume%20Winter%202026.pdf" target="_blank" rel="noopener noreferrer">
+                <Download className="mr-2 h-4 w-4" />
+                Download PDF
+              </a>
             </Button>
           </div>
           

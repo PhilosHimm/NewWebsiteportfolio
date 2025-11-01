@@ -60,14 +60,25 @@ export function ProjectsPreviewSection() {
               <motion.div key={project.slug} variants={itemVariants}>
                 <Link href={`/projects/${project.slug}`}>
                   <Card className="group h-full overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
-                    {/* Project Image */}
+                    {/* Project Image/Video */}
                     <div className="relative aspect-video overflow-hidden bg-muted">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                      {project.video ? (
+                        <video
+                          src={project.video}
+                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
 

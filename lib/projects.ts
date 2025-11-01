@@ -3,6 +3,7 @@ export interface Project {
   title: string
   description: string
   image: string
+  video?: string // Optional video preview
   tags: string[]
   problem?: string
   approach?: string
@@ -24,7 +25,8 @@ export const projects: Project[] = [
     slug: "studyspotsto",
     title: "StudySpotsTO",
     description: "A mobile app prototype to discover and share the best study locations around campus",
-    image: "/project-pics/studyspots-render.png",
+    image: "/project-pics/studyspotsfigmapage.png",
+    video: "/project-pics/studyspotspreview.mp4",
     tags: ["UX Design", "Mobile Design", "Figma", "Prototyping", "Course Project"],
     role: "UX Designer & Researcher",
     timeline: "May - July 2025 (12 weeks)",
@@ -185,7 +187,8 @@ If developed further:
     slug: "traic-website",
     title: "TRAIC Website Redesign",
     description: "Complete website redesign for the Toronto AI Community organization",
-    image: "/projects/traic.jpg",
+    image: "/project-pics/traichomepage.png",
+    video: "/project-pics/traicpreview.mp4",
     tags: ["Web Design", "React", "TypeScript", "Framer Motion"],
     content: `## Project Overview
 
@@ -200,15 +203,16 @@ This project involved a complete redesign and rebuild of the Toronto AI Communit
 - Performance optimizations
 - Mobile-first approach`,
     links: {
-      live: "https://traic.ca",
-      github: "https://github.com/PhilosHimm/traic-website",
+      live: "https://traictmu.vercel.app",
+      // github: "https://github.com/PhilosHimm/traic-website",
     },
   },
   {
     slug: "ceid100",
     title: "Feed Escape Guide: Digital Wellness Education Platform",
     description: "Interactive web application teaching digital literacy to Toronto high school students",
-    image: "/projects/ceid100.jpg",
+    image: "/project-pics/ceid100homepage.png",
+    video:"/project-pics/ceid100preview.mp4",
     tags: ["React", "TypeScript", "Tailwind CSS", "UX Design", "Course Project"],
     role: "Frontend Development & UX Designer",
     timeline: "May–July 2025 (13 weeks)",
