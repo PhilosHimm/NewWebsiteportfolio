@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function ResumePage() {
-  const timelineData = [
+  const timelineData = [    
     {
       title: "2025 - Present",
       content: (

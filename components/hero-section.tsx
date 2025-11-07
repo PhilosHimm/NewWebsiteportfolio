@@ -94,8 +94,20 @@ export function HeroSection() {
   if (!mounted) return null
 
   return (
-    <section className="min-h-[80vh] flex items-center justify-center px-4 py-20">
-      <div className="container mx-auto max-w-4xl text-center">
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 -mt-24 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/cherryblossom.JPG"
+          alt="Cherry Blossom Background"
+          fill
+          className="object-cover opacity-50"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/80" />
+      </div>
+      
+      <div className="container mx-auto max-w-4xl text-center relative z-10">
         <motion.div
           variants={prefersReducedMotion ? undefined : containerVariants}
           initial={prefersReducedMotion ? undefined : "hidden"}
@@ -143,13 +155,13 @@ export function HeroSection() {
                 size="lg"
                 className="group focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 onClick={() => {
-                  document.getElementById("projects")?.scrollIntoView({ 
+                  document.getElementById("contact")?.scrollIntoView({ 
                     behavior: "smooth",
                     block: "start"
                   })
                 }}
               >
-                View Projects
+                Contact Me
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
