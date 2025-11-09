@@ -185,14 +185,14 @@ If developed further:
   },
   {
     slug: "traic-website",
-    title: "TRAIC Website Redesign",
-    description: "Complete website redesign for the Toronto AI Community organization",
+    title: "TRAIC Website Creation",
+    description: "Complete website creation for the Ted Roger's Alternative Investment Club (TRAIC)",
     image: "/project-pics/traichomepage.png",
     video: "/project-pics/traicpreview.mp4",
     tags: ["Web Design", "React", "TypeScript", "Framer Motion"],
     content: `## Project Overview
 
-This project involved a complete redesign and rebuild of the Toronto AI Community (TRAIC) website.
+This project involved a complete new website design and development for the Ted Rogers Alternative Investment Club (TRAIC) at Toronto Metropolitan University. The goal was to create a modern, user-friendly platform to showcase the club's activities, events, and resources for members and prospective students.
 
 *Detailed case study coming soon...*
 
