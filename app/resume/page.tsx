@@ -181,7 +181,7 @@ export default function ResumePage() {
               <div className="border-l-2 border-primary pl-4">
                 <h3 className="text-xl font-medium">Business Technology Management</h3>
                 <p className="text-muted-foreground">Toronto Metropolitan University</p>
-                <p className="text-sm text-muted-foreground">Expected Graduation: 2026</p>
+                <p className="text-sm text-muted-foreground">September 2022 - Expected Graduation: 2027</p>
               </div>
             </section>
 

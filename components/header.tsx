@@ -9,6 +9,7 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useState, useEffect, useRef } from "react"
 import { projects } from "@/lib/projects"
+import { StaggeredMenu } from "@/components/staggered-menu"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -262,21 +263,29 @@ export function Header() {
               )}
             </Button>
           )}
-
-          {/* Mobile menu - simplified for now */}
+          
+          {/* Mobile StaggeredMenu Button - visible on mobile */}
           <div className="md:hidden">
-            <select
-              value={pathname}
-              onChange={(e) => window.location.href = e.target.value}
-              className="bg-background/80 border border-border rounded-full px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-label="Mobile navigation"
-            >
-              {navItems.map((item) => (
-                <option key={item.href} value={item.href}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
+            <StaggeredMenu
+              position="right"
+              colors={theme === "dark" ? ['#18181b', '#27272a', '#3f3f46'] : ['#ffffff', '#f9fafb', '#f3f4f6']}
+              items={navItems.map((item) => ({
+                label: item.label,
+                ariaLabel: item.label,
+                link: item.href
+              }))}
+              socialItems={[
+                { label: 'GitHub', link: 'https://github.com/PhilosHimm' },
+                { label: 'LinkedIn', link: 'https://www.linkedin.com/in/philos-himm/' },
+              ]}
+              displaySocials={true}
+              displayItemNumbering={true}
+              menuButtonColor={theme === "dark" ? "#ffffff" : "#000000"}
+              openMenuButtonColor={theme === "dark" ? "#ffffff" : "#000000"}
+              accentColor="#3b82f6"
+              isFixed={true}
+              changeMenuColorOnOpen={false}
+            />
           </div>
         </div>
       </nav>

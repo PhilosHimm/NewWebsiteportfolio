@@ -10,6 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { projects } from "@/lib/projects"
+import { StaggeredMenu } from "@/components/staggered-menu"
 
 interface NavBarProps {
   isExperiencePage?: boolean;
@@ -369,64 +370,26 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
             </div>
 
             <div className="md:hidden">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="px-0">
-                  <SheetHeader className="px-4">
-                    <SheetTitle>Menu</SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col py-4">
-                    {navItems.map((item) => (
-                      <Button
-                        key={item.id}
-                        variant="ghost"
-                        className="justify-start px-4 py-6 rounded-none text-lg font-normal"
-                        onClick={() => scrollToSection(item.id)}
-                      >
-                        <div className="flex items-center w-full">
-                          <div
-                            className={`mr-4 ${
-                              activeSection === item.id
-                                ? "text-blue-600 dark:text-blue-400"
-                                : "text-gray-500 dark:text-gray-400"
-                            }`}
-                          >
-                            {item.icon}
-                          </div>
-                          <span>{item.label}</span>
-                          <ChevronRight className="ml-auto h-5 w-5 text-gray-400" />
-                        </div>
-                      </Button>
-                    ))}
-
-                    <div className="mt-6 px-4">
-                      <p className="text-sm font-medium text-gray-500 mb-2">Theme</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        <Button
-                          variant={theme === "light" ? "default" : "outline"}
-                          className="flex flex-col items-center justify-center h-20"
-                          onClick={() => setTheme("light")}
-                        >
-                          <Sun className="h-6 w-6 mb-1" />
-                          <span>Light</span>
-                        </Button>
-                        <Button
-                          variant={theme === "dark" ? "default" : "outline"}
-                          className="flex flex-col items-center justify-center h-20"
-                          onClick={() => setTheme("dark")}
-                        >
-                          <Moon className="h-6 w-6 mb-1" />
-                          <span>Dark</span>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
+              <StaggeredMenu
+                position="right"
+                colors={theme === "dark" ? ['#1e1e22', '#35353c', '#4a4a52'] : ['#f3f4f6', '#e5e7eb', '#d1d5db']}
+                items={navItems.map((item) => ({
+                  label: item.label,
+                  ariaLabel: item.label,
+                  link: isExperiencePage ? `/#${item.id}` : `#${item.id}`
+                }))}
+                socialItems={[
+                  { label: 'GitHub', link: 'https://github.com/PhilosHimm' },
+                  { label: 'LinkedIn', link: 'https://linkedin.com/in/yourprofile' },
+                ]}
+                displaySocials={true}
+                displayItemNumbering={true}
+                menuButtonColor={theme === "dark" ? "#fff" : "#000"}
+                openMenuButtonColor={theme === "dark" ? "#000" : "#000"}
+                accentColor="#3b82f6"
+                isFixed={false}
+                changeMenuColorOnOpen={true}
+              />
             </div>
           </div>
         </div>

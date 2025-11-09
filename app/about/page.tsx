@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const images = [
-    "https://placehold.co/600x400/EEE/31343C?text=LinkedIn+Headshot",
-    "https://placehold.co/600x400/31343C/EEE?text=Image+2",
-    "https://placehold.co/600x400/DDD/31343C?text=Image+3",
+    { src: "/Msoftheadshot.JPG", caption: "Professional Headshot" },
+    { src: "/A6700315.JPG", caption: "Pic at Microsoft Office Toronto" },
+    { src: "/DSC05769.jpg", caption: "Holding up my bike at Whimbrel Point" },
   ];
 
   return (
@@ -43,7 +43,7 @@ export default function AboutPage() {
               My technical toolkit includes Python, React, TypeScript, Power BI, Power Automate, and AI-assisted development tools.
             </p>
             <p className="text-lg mb-4">
-              Outside of work, I'm a three-time intramural volleyball captain, bubble tea explorer (roasted oolong milk tea with tapioca is my go-to), and a hobbyist photographer 
+              Outside of work, I love volleyball - I've been a three-time intramural volleyball captain as well as gone to a few tournaments in Toronto. I'm also an avid bubble tea enthusiast (roasted oolong milk tea with tapioca is my go-to), and a hobbyist photographer 
               (check out my work at{" "}
               <LinkPreview 
                 url="https://philoshoots.pixieset.com/philosportfolio/" 
@@ -52,6 +52,7 @@ export default function AboutPage() {
                 philoshoots.pixieset.com/philosportfolio/
               </LinkPreview>
               ).
+              I also enjoy biking around Toronto and going to the gym.
             </p>
             <p className="text-lg mb-4">
               Always open to connecting with professionals, students, and anyone passionate about the intersection of business, technology, and AI!
@@ -63,16 +64,21 @@ export default function AboutPage() {
             <CardContent className="p-0">
               <Carousel className="w-full">
                 <CarouselContent>
-                  {images.map((src, index) => (
+                  {images.map((image, index) => (
                     <CarouselItem key={index}>
-                      <div className="aspect-w-16 aspect-h-9">
-                        <Image
-                          src={src}
-                          alt={`About me image ${index + 1}`}
-                          width={600}
-                          height={400}
-                          className="object-cover w-full h-full"
-                        />
+                      <div className="space-y-2">
+                        <p className="text-sm font-medium text-center text-muted-foreground">
+                          {image.caption}
+                        </p>
+                        <div className="aspect-w-16 aspect-h-9">
+                          <Image
+                            src={image.src}
+                            alt={`About me image ${index + 1}`}
+                            width={600}
+                            height={400}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
                       </div>
                     </CarouselItem>
                   ))}
