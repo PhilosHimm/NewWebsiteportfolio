@@ -1,14 +1,16 @@
 "use client"
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react"
-import { motion } from "framer-motion"
-import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight, Laptop } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Home, Briefcase, GraduationCap, Code, Mail, Menu, Moon, Sun, ChevronRight } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
+import { projects } from "@/lib/projects"
+import { StaggeredMenu } from "@/components/staggered-menu"
 
 interface NavBarProps {
   isExperiencePage?: boolean;
@@ -27,6 +29,10 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
   const navContainerRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLElement | null)[]>([]);
   const [highlighterStyle, setHighlighterStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  // Get featured projects for dropdown
+  const featuredProjects = projects.slice(0, 4);
 
   useEffect(() => {
     setMounted(true)
@@ -145,6 +151,80 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
         navItemRefs.current[index] = el;
       }
     };
+
+    // Special handling for Projects dropdown
+    if (item.id === 'projects') {
+      return (
+        <div 
+          key={item.id}
+          className="relative"
+          onMouseEnter={() => setActiveDropdown('projects')}
+          onMouseLeave={() => setActiveDropdown(null)}
+        >
+          <Button
+            ref={assignRef}
+            variant="ghost"
+            className={`px-4 py-2 rounded-full relative z-10 ${
+              activeSection === item.id
+                ? "text-blue-600 dark:text-blue-400 font-semibold"
+                : "text-gray-700 dark:text-gray-300 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+            onClick={() => {
+              router.push('/projects')
+            }}
+          >
+            {item.label}
+          </Button>
+
+          <AnimatePresence>
+            {activeDropdown === 'projects' && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85, y: 10 }}
+                transition={{
+                  type: "spring",
+                  mass: 0.5,
+                  damping: 11.5,
+                  stiffness: 100,
+                  restDelta: 0.001,
+                  restSpeed: 0.001,
+                }}
+                className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4 z-50"
+              >
+                <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl p-4">
+                  <div className="text-sm grid grid-cols-2 gap-6 w-max">
+                    {featuredProjects.map((project) => (
+                      <Link
+                        key={project.slug}
+                        href={`/projects/${project.slug}`}
+                        className="flex space-x-2 hover:opacity-80 transition-opacity"
+                      >
+                        <img
+                          src={project.image}
+                          width={140}
+                          height={70}
+                          alt={project.title}
+                          className="shrink-0 rounded-md shadow-2xl object-cover"
+                        />
+                        <div>
+                          <h4 className="text-lg font-bold mb-1 text-black dark:text-white">
+                            {project.title}
+                          </h4>
+                          <p className="text-neutral-700 text-xs max-w-[10rem] dark:text-neutral-300">
+                            {project.description}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      );
+    }
 
     if (isExperiencePage) {
       return (
@@ -290,79 +370,30 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
             </div>
 
             <div className="md:hidden">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="px-0">
-                  <SheetHeader className="px-4">
-                    <SheetTitle>Menu</SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col py-4">
-                    {navItems.map((item) => (
-                      <Button
-                        key={item.id}
-                        variant="ghost"
-                        className="justify-start px-4 py-6 rounded-none text-lg font-normal"
-                        onClick={() => scrollToSection(item.id)}
-                      >
-                        <div className="flex items-center w-full">
-                          <div
-                            className={`mr-4 ${
-                              activeSection === item.id
-                                ? "text-blue-600 dark:text-blue-400"
-                                : "text-gray-500 dark:text-gray-400"
-                            }`}
-                          >
-                            {item.icon}
-                          </div>
-                          <span>{item.label}</span>
-                          <ChevronRight className="ml-auto h-5 w-5 text-gray-400" />
-                        </div>
-                      </Button>
-                    ))}
-
-                    <div className="mt-6 px-4">
-                      <p className="text-sm font-medium text-gray-500 mb-2">Theme</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        <Button
-                          variant={theme === "light" ? "default" : "outline"}
-                          className="flex flex-col items-center justify-center h-20"
-                          onClick={() => setTheme("light")}
-                        >
-                          <Sun className="h-6 w-6 mb-1" />
-                          <span>Light</span>
-                        </Button>
-                        <Button
-                          variant={theme === "dark" ? "default" : "outline"}
-                          className="flex flex-col items-center justify-center h-20"
-                          onClick={() => setTheme("dark")}
-                        >
-                          <Moon className="h-6 w-6 mb-1" />
-                          <span>Dark</span>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
+              <StaggeredMenu
+                position="right"
+                colors={theme === "dark" ? ['#1e1e22', '#35353c', '#4a4a52'] : ['#f3f4f6', '#e5e7eb', '#d1d5db']}
+                items={navItems.map((item) => ({
+                  label: item.label,
+                  ariaLabel: item.label,
+                  link: isExperiencePage ? `/#${item.id}` : `#${item.id}`
+                }))}
+                socialItems={[
+                  { label: 'GitHub', link: 'https://github.com/PhilosHimm' },
+                  { label: 'LinkedIn', link: 'https://linkedin.com/in/yourprofile' },
+                ]}
+                displaySocials={true}
+                displayItemNumbering={true}
+                menuButtonColor={theme === "dark" ? "#fff" : "#000"}
+                openMenuButtonColor={theme === "dark" ? "#000" : "#000"}
+                accentColor="#3b82f6"
+                isFixed={false}
+                changeMenuColorOnOpen={true}
+              />
             </div>
           </div>
         </div>
       </motion.header>
-
-      <motion.div 
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
-        initial={{ bottom: 0 }}
-        animate={{ bottom: showNavbar ? 0 : -64 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="flex justify-around">
-          {navItems.map((item) => renderMobileNavItem(item))}
-        </div>
-      </motion.div>
     </>
   )
 }
