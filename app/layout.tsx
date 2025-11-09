@@ -9,8 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Philos Himm | Portfolio",
-  description: "Philos' portfolio website with Google Material Design language",
-  generator: 'v0.dev'
+  description: "Philos' website portfolio",
 }
 
 export default function RootLayout({
