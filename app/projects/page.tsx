@@ -31,11 +31,16 @@ export default function ProjectsPage() {
                   {project.video ? (
                     <video
                       src={project.video}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                      autoPlay
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 md:autoplay"
                       loop
                       muted
                       playsInline
+                      autoPlay={false}
+                      onLoadedMetadata={(e) => {
+                        if (window.innerWidth >= 768) {
+                          (e.target as HTMLVideoElement).play()
+                        }
+                      }}
                     />
                   ) : (
                     <Image
