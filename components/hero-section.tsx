@@ -138,12 +138,9 @@ export function HeroSection() {
             </motion.span>
           </div>
 
-          <motion.p
-            variants={prefersReducedMotion ? undefined : itemVariants}
-            className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto"
-          >
-            An aspiring UX/Product designer and business analyst passionate about creating
-            impactful <span className="font-serif italic">digital experiences</span>
+          <motion.p variants={prefersReducedMotion ? undefined : itemVariants} className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+          Business Technology Management student exploring AI-assisted building, intuitive and human-centered web experiences with Next.js and TypeScript.
+          Working on crafting immersive <span className="font-serif italic">digital experiences</span>
           </motion.p>
 
           <motion.div
