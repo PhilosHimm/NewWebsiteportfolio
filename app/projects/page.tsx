@@ -1,18 +1,27 @@
-import type { Metadata } from "next"
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { getAllProjects } from "@/lib/projects"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, ExternalLink, Github } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Projects | Philos Portfolio",
-  description: "Explore my design and development projects",
-}
+import { useEffect, useState } from "react"
 
 export default function ProjectsPage() {
   const projects = getAllProjects()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <main className="container mx-auto px-4 py-20">
@@ -31,16 +40,11 @@ export default function ProjectsPage() {
                   {project.video ? (
                     <video
                       src={project.video}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 md:autoplay"
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                      autoPlay={!isMobile}
                       loop
                       muted
                       playsInline
-                      autoPlay={false}
-                      onLoadedMetadata={(e) => {
-                        if (window.innerWidth >= 768) {
-                          (e.target as HTMLVideoElement).play()
-                        }
-                      }}
                     />
                   ) : (
                     <Image
