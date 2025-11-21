@@ -22,6 +22,11 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: "Philos Himm | Portfolio",
   description: "Philos' website portfolio",
+  icons: {
+    icon: "/notionpfpcircle.png",
+    shortcut: "/notionpfpcircle.png",
+    apple: "/notionpfpcircle.png",
+  },
 }
 
 export default function RootLayout({
