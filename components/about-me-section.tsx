@@ -13,7 +13,7 @@ export function AboutMeSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 1.0 }}
           className="text-center space-y-6"
         >
           <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>

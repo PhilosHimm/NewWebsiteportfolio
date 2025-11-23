@@ -16,8 +16,8 @@ export function ProjectsPreviewSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
+        staggerChildren: 0.3,
+        delayChildren: 0.3,
         ease: "easeIn",
       },
     },
@@ -29,7 +29,7 @@ export function ProjectsPreviewSection() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 1.0,
         ease: "easeIn",
       },
     },

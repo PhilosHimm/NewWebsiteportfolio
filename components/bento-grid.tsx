@@ -23,7 +23,7 @@ const BentoCard = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      transition={{ duration: 1.0, ease: "easeOut", delay }}
       className={cn("group relative overflow-hidden", className)}
     >
       <Card className="h-full border border-white/20 bg-white/10 backdrop-blur-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/30">
