@@ -98,13 +98,13 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/cherryblossom.JPG"
+          src="/DSC01405.jpg"
           alt="Cherry Blossom Background"
           fill
           className="object-cover opacity-50"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background/20" />
       </div>
       
       <div className="container mx-auto max-w-4xl text-center relative z-10">
