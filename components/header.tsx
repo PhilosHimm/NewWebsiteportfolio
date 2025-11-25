@@ -268,7 +268,7 @@ export function Header() {
           <div className="md:hidden">
             <StaggeredMenu
               position="right"
-              colors={theme === "dark" ? ['#18181b', '#27272a', '#3f3f46'] : ['#ffffff', '#f9fafb', '#f3f4f6']}
+              colors={!mounted || theme === "dark" ? ['#18181b', '#27272a', '#3f3f46'] : ['#ffffff', '#f9fafb', '#f3f4f6']}
               items={navItems.map((item) => ({
                 label: item.label,
                 ariaLabel: item.label,
@@ -280,8 +280,8 @@ export function Header() {
               ]}
               displaySocials={true}
               displayItemNumbering={true}
-              menuButtonColor={theme === "dark" ? "#ffffff" : "#000000"}
-              openMenuButtonColor={theme === "dark" ? "#ffffff" : "#000000"}
+              menuButtonColor={!mounted || theme === "dark" ? "#ffffff" : "#000000"}
+              openMenuButtonColor={!mounted || theme === "dark" ? "#ffffff" : "#000000"}
               accentColor="#3b82f6"
               isFixed={true}
               changeMenuColorOnOpen={false}
