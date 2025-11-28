@@ -27,36 +27,43 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12">
         <div className="lg:col-span-2">
           <h1 className="text-4xl font-bold mb-8">About Me</h1>
-          <div className="prose dark:prose-invert max-w-none">
-            <p className="text-lg mb-4">
-              👋 Hi there!
-              I'm a 4th-year Business Technology Management co-op student at Toronto Metropolitan University (in a 5-year program), 
-              passionate about using technology, data, and AI to drive innovation and impact.
-            </p>
-            <p className="text-lg mb-4">
-              Currently, I'm working at the Ontario Public Service (GovTechON - Government Services Integration Cluster) as an Experience Designer, where I contribute to projects that improve digital services for Ontarians.
-              Previously, I completed a summer co-op as a Business Analysis Assistant, Procurement at The Salvation Army Canada & Bermuda. There, I streamlined procurement operations across 150+ ministry units, automated workflows for 500+ staff,
-              and turned large-scale financial data into actionable insights using Excel, Power BI, and SharePoint. I also designed outreach systems that boosted sponsorship engagement by 150% and managed campaigns connecting with 500+ potential sponsors.
+          <div className="prose dark:prose-invert max-w-none space-y-4">
+            <p className="text-lg">
+              👋 Hi!
             </p>
             <p className="text-lg">
-              🤖 As an AI enthusiast, I actively integrate generative AI, GitHub Copilot, and automation tools into my work to accelerate coding, reduce repetitive tasks, and enhance productivity.
-              My technical toolkit includes Python, React, TypeScript, Power BI, Power Automate, and AI-assisted development tools.
+              I’m a 4th-year Business Technology Management co-op student at Toronto Metropolitan University, drawn to how tech, data, and AI can create smoother, smarter digital experiences.
             </p>
-            <p className="text-lg mb-4">
-              Outside of work, I love volleyball - I've been a three-time intramural volleyball captain as well as gone to a few tournaments in Toronto. I'm also an avid bubble tea enthusiast (roasted oolong milk tea with tapioca is my go-to), and a hobbyist photographer 
-              (check out my work at{" "}
-              <LinkPreview 
-                url="https://philoshoots.pixieset.com/philosportfolio/" 
-                className="text-blue-500 underline font-medium"
+            <p className="text-lg">
+              I’m currently an Experience Designer with the Ontario Public Service, helping improve services used across the province. Previously, at The Salvation Army, I streamlined procurement workflows, automated processes for hundreds of staff, and transformed large datasets into practical insights. I also built outreach systems that meaningfully boosted sponsorship engagement.
+            </p>
+            <p className="text-lg">
+              I’m especially interested in UX/UI and Product Management, designing things that feel intuitive, solving real user problems, and experimenting with ideas that make everyday interactions a little lighter.
+            </p>
+            <p className="text-lg">
+              I use AI tools like GitHub Copilot to speed up development and cut repetitive work. My toolkit includes Python, React, TypeScript, Power BI, and various automation tools.
+            </p>
+            <p className="text-lg">
+              Outside of work, I enjoy volleyball, bubble tea, biking and photography.
+            </p>
+            <p className="text-lg">
+              Open to connecting with anyone building, designing, or exploring what’s next in digital experiences.
+            </p>
+
+            <div className="flex flex-col gap-2 mt-6 not-prose">
+              <a href="mailto:phimm@torontomu.ca" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <span>📧</span> phimm@torontomu.ca
+              </a>
+              <a href="https://github.com/PhilosHimm" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <span>💻</span> github.com/PhilosHimm
+              </a>
+              <LinkPreview
+                url="https://philoshoots.pixieset.com/philosportfolio/"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
               >
-                philoshoots.pixieset.com/philosportfolio/
+                <span>📸</span> philoshoots.pixieset.com/philosportfolio/
               </LinkPreview>
-              ).
-              I also enjoy biking around Toronto and going to the gym.
-            </p>
-            <p className="text-lg mb-4">
-              Always open to connecting with professionals, students, and anyone passionate about the intersection of business, technology, and AI!
-            </p>
+            </div>
           </div>
         </div>
         <div className="lg:col-span-1 mt-8 lg:mt-0">
