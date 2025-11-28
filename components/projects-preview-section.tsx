@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, ExternalLink, Github } from "lucide-react"
+import { ArrowRight, ExternalLink, Github, Figma } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -108,13 +108,18 @@ export function ProjectsPreviewSection() {
                           View Case Study
                           <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </span>
-                        
-                        {project.links.live && (
-                          <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
-                        )}
-                        {project.links.github && (
-                          <Github className="h-4 w-4 text-muted-foreground" />
-                        )}
+
+                        <div className="flex gap-2 ml-auto">
+                          {project.links.live && (
+                            <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                          )}
+                          {project.links.github && (
+                            <Github className="h-4 w-4 text-muted-foreground" />
+                          )}
+                          {project.links.figma && (
+                            <Figma className="h-4 w-4 text-muted-foreground" />
+                          )}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>

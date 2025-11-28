@@ -18,13 +18,31 @@ export function AboutMeSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            I'm a Business Technology Management student at Toronto Metropolitan University, 
-            passionate about creating meaningful digital experiences. Currently working as an 
-            Experience Designer at the Ontario Government, I combine design thinking with 
-            technical expertise to solve complex problems and deliver user-centered solutions. 
-            My work spans UX/UI design, development, and data analysis, always with a focus 
-            on creating impactful and accessible experiences.
+            Experience Designer @ Ontario Government & BTM Student @ TMU. Passionate about combining design and technology to build user-centered digital solutions.
           </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto py-6">
+            <div className="space-y-2">
+              <h3 className="font-semibold text-foreground">Experience Designer</h3>
+              <p className="text-sm text-muted-foreground">Ontario Government • 2025 - Present</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-foreground">Administrative & Office Support</h3>
+              <p className="text-sm text-muted-foreground">The Salvation Army • 2024 - 2025</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-foreground">Intramurals Assistant</h3>
+              <p className="text-sm text-muted-foreground">Toronto Metropolitan University • 2023 - 2025</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-foreground">Inventory & Distribution</h3>
+              <p className="text-sm text-muted-foreground">Marigolds & Onions • 2022 - 2023</p>
+            </div>
+            <div className="space-y-2 md:col-span-2">
+              <h3 className="font-semibold text-foreground">Product Process Specialist</h3>
+              <p className="text-sm text-muted-foreground">Best Buy • 2020 - 2022</p>
+            </div>
+          </div>
           
           <div className="flex flex-wrap justify-center gap-4 pt-4">
             <Button asChild size="lg" className="group">

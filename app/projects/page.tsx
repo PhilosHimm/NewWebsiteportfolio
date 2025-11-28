@@ -5,7 +5,7 @@ import Image from "next/image"
 import { getAllProjects } from "@/lib/projects"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, ExternalLink, Github } from "lucide-react"
+import { ArrowRight, ExternalLink, Github, Figma } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export default function ProjectsPage() {
@@ -16,10 +16,10 @@ export default function ProjectsPage() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
@@ -83,13 +83,18 @@ export default function ProjectsPage() {
                       View Case Study
                       <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </span>
-                    
-                    {project.links.live && (
-                      <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
-                    )}
-                    {project.links.github && (
-                      <Github className="h-4 w-4 text-muted-foreground" />
-                    )}
+
+                    <div className="flex gap-2 ml-auto">
+                      {project.links.live && (
+                        <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                      )}
+                      {project.links.github && (
+                        <Github className="h-4 w-4 text-muted-foreground" />
+                      )}
+                      {project.links.figma && (
+                        <Figma className="h-4 w-4 text-muted-foreground" />
+                      )}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
