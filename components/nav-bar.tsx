@@ -372,7 +372,7 @@ export function NavBar({ isExperiencePage = false }: NavBarProps) {
             <div className="md:hidden">
               <StaggeredMenu
                 position="right"
-                colors={theme === "dark" ? ['#1e1e22', '#35353c', '#4a4a52'] : ['#f3f4f6', '#e5e7eb', '#d1d5db']}
+                colors={theme === "dark" ? ['#1a1a1a', '#1c1c1c', '#1f1f1f'] : ['#f3f4f6', '#e5e7eb', '#d1d5db']}
                 items={navItems.map((item) => ({
                   label: item.label,
                   ariaLabel: item.label,

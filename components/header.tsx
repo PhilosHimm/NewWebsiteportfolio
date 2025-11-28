@@ -268,7 +268,7 @@ export function Header() {
           <div className="md:hidden">
             <StaggeredMenu
               position="right"
-              colors={!mounted || theme === "dark" ? ['#18181b', '#27272a', '#3f3f46'] : ['#ffffff', '#f9fafb', '#f3f4f6']}
+              colors={!mounted || theme === "dark" ? ['#1a1a1a', '#1c1c1c', '#1f1f1f'] : ['#ffffff', '#f9fafb', '#f3f4f6']}
               items={navItems.map((item) => ({
                 label: item.label,
                 ariaLabel: item.label,
